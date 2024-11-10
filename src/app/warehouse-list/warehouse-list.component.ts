@@ -11,8 +11,19 @@ import Swal from 'sweetalert2';
 })
 export class WarehouseListComponent implements OnInit {
   warehouses!: Warehouse[]
+  profilImage!: any
   @ViewChild('searchText') location!: ElementRef
-  constructor(private router: Router, private warehouseService: WarehouseService) { }
+  constructor(private router: Router, private warehouseService: WarehouseService) {
+
+    var info = localStorage.getItem('userInfo');
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var profilImage = parsedInfo.profileImage;
+      this.profilImage = profilImage
+    } else {
+      console.log('No user info found in localStorage');
+    }
+  }
   newWarehouse() {
     this.router.navigate(["home/newWarehouse"])
   }

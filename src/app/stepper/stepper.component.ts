@@ -25,6 +25,7 @@ export class StepperComponent implements OnInit {
   updatedProductId!: number
   order!: Order
   stock!: number
+  quantity!: number
   @ViewChild('searchText') name!: ElementRef
   step: number = 1;  // Keeps track of the current step
   constructor(private service: ProductsService, private activatedRoute: ActivatedRoute, private ordersService: OrdersService, private formBuilder: FormBuilder, private router: Router) { }
@@ -66,7 +67,7 @@ export class StepperComponent implements OnInit {
           this.addOrderForm.controls['orderId'].setValue(data.orderId)
         this.selectedRow = data.productId
         this.productId = data.productId
-
+        this.quantity = data.quantity
       }
     });
   }
@@ -167,10 +168,9 @@ export class StepperComponent implements OnInit {
 
   }
   reloadProducts() {
-    this.service.loadAllProducts().subscribe({
+    this.service.loadAllProductsUpperThanZero().subscribe({
       next: data => {
         this.products = data
-
       },
     });
   }

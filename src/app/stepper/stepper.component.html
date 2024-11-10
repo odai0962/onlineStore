@@ -133,7 +133,7 @@
                             <div class="form-group w-100 mb-3">
                                 <label for="order-date" class="text-muted mb-2">Order Date</label>
                                 <input id="order-date" type="date" class="form-control bg-light"
-                                    formControlName="orderDate" />
+                                    formControlName="orderDate" min="" />
                             </div>
                             <div class="invalid-feedback"
                                 *ngIf="addOrderForm.controls['orderDate'].touched && addOrderForm.controls['orderDate'].hasError('required')">
@@ -145,7 +145,7 @@
                                 <select id="order-state" formControlName="orderState" class="form-control bg-light">
                                     <option value="Pending">Pending</option>
                                     <option value="Delivered">Delivered</option>
-                                    <option value="Canceled">Canceled</option>
+                                    <option value="Cancelled">Cancelled</option>
                                 </select>
                             </div>
                             <div class="invalid-feedback"
@@ -156,7 +156,8 @@
                             <div class="form-group w-100 mb-3">
                                 <label for="quantity" class="text-muted mb-2">Quantity</label>
                                 <input id="quantity" type="number" class="form-control bg-light"
-                                    placeholder="Enter quantity" formControlName="quantity" [max]="stock" min="0" />
+                                    placeholder="Enter quantity" formControlName="quantity"
+                                    [max]=" isEdit==true?quantity:stock" min="0" />
                             </div>
                             <div class="invalid-feedback"
                                 *ngIf="addOrderForm.controls['quantity'].touched && addOrderForm.controls['quantity'].hasError('required')">

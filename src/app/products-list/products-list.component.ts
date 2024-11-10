@@ -11,8 +11,20 @@ import Swal from 'sweetalert2';
 })
 export class ProductsListComponent implements OnInit {
   products!: Products[]
+  profilImage!: any
   @ViewChild('searchText') name!: ElementRef
-  constructor(private router: Router, private service: ProductsService) { }
+  constructor(private router: Router, private service: ProductsService) {
+    var info = localStorage.getItem('userInfo');
+
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var profilImage = parsedInfo.profileImage;
+      this.profilImage = profilImage
+    } else {
+      console.log('No user info found in localStorage');
+    }
+  }
   newProduct() {
     this.router.navigate(['home/newProduct'])
   }

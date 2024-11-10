@@ -1,3 +1,4 @@
+import { Products } from "./productsDTO"
 
 
 export class Order {
@@ -11,4 +12,5 @@ export class Order {
     shippingAddress!: string
     customerName!: string
     productId!: number
+    product!: Products
 }

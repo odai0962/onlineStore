@@ -31,4 +31,7 @@ export class ProductsService {
   updateProduct(product: Products): Observable<any> {
     return this.client.put(this.baseURl + '/api/Product/updateProduct', product);
   }
+  loadAllProductsUpperThanZero(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/loadAllProductsUpperThanZero');
+  }
 }

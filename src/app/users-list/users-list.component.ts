@@ -12,8 +12,17 @@ import Swal from 'sweetalert2';
 })
 export class UsersListComponent implements OnInit {
   users!: User[]
+  profilImage!: any
   @ViewChild('searchText') name!: ElementRef
   constructor(private router: Router, private usersService: UsersService) {
+    var info = localStorage.getItem('userInfo');
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var profilImage = parsedInfo.profileImage;
+      this.profilImage = profilImage
+    } else {
+      console.log('No user info found in localStorage');
+    }
   }
 
   ngOnInit(): void {

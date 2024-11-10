@@ -26,7 +26,7 @@
 
             <!-- Avatar -->
             <div class="dropdown">
-                <a href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                     <img src="{{profilImage}}" class="rounded-circle" height="45"
                         alt="Black and White Portrait of a Man" loading="lazy" />
                 </a>
@@ -68,6 +68,7 @@
     <thead class="bg-light">
         <tr>
             <th>ID</th>
+            <th>product Name</th>
             <th>date</th>
             <th>status</th>
             <th>total price </th>
@@ -83,6 +84,9 @@
         <tr *ngFor="let order of orders">
             <td>
                 <p class="fw-normal mb-1">{{order.orderId}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">{{order.product.name}}</p>
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.orderDate | date:'shortDate'}}</p>

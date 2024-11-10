@@ -16,6 +16,8 @@ export class OrderListComponent implements OnInit {
   @ViewChild('searchText') address!: ElementRef
   profilImage!: any
   profileInfo!: object
+  product!: Products
+
   constructor(private router: Router, private ordersService: OrdersService) {
     var info = localStorage.getItem('userInfo');
 
@@ -35,17 +37,21 @@ export class OrderListComponent implements OnInit {
     this.reloadOrders()
   }
   search() {
+    debugger
     if (this.address.nativeElement.value.length == 0) {
       this.reloadOrders()
     } else {
+      debugger
       this.ordersService.searchByAddress(this.address.nativeElement.value).subscribe({
         next: data => {
+          debugger
           if (data.length == 0) {
             Swal.fire("no data found!");
             this.reloadOrders()
 
           } else {
             this.orders = data
+
           }
 
         },
