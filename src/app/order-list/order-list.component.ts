@@ -14,7 +14,20 @@ import Swal from 'sweetalert2';
 export class OrderListComponent implements OnInit {
   orders!: Order[]
   @ViewChild('searchText') address!: ElementRef
-  constructor(private router: Router, private ordersService: OrdersService) { }
+  profilImage!: any
+  profileInfo!: object
+  constructor(private router: Router, private ordersService: OrdersService) {
+    var info = localStorage.getItem('userInfo');
+
+
+    if (info) {
+      var parsedInfo = JSON.parse(info);
+      var profilImage = parsedInfo.profileImage;
+      this.profilImage = profilImage
+    } else {
+      console.log('No user info found in localStorage');
+    }
+  }
   newOrder() {
     this.router.navigate(["/home/neworder"]);
   }

@@ -24,6 +24,7 @@ export class StepperComponent implements OnInit {
   isValidatForm: boolean = true
   updatedProductId!: number
   order!: Order
+  stock!: number
   @ViewChild('searchText') name!: ElementRef
   step: number = 1;  // Keeps track of the current step
   constructor(private service: ProductsService, private activatedRoute: ActivatedRoute, private ordersService: OrdersService, private formBuilder: FormBuilder, private router: Router) { }
@@ -35,7 +36,6 @@ export class StepperComponent implements OnInit {
       orderDate: ['', Validators.required],
       orderState: ['', Validators.required],
       quantity: ['', Validators.required],
-      // ['', Validators.compose([Validators.required, Validators.max(this.selectedProduct.stock)])],
       paymentMethod: ['', Validators.required],
       productId: [''],
       orderId: ['']
@@ -73,11 +73,15 @@ export class StepperComponent implements OnInit {
 
   // Method to set the current step
   setStep(stepNumber: number) {
+    debugger
     this.step = stepNumber;
     if (stepNumber == 2) {
       this.service.getProductById(this.productId).subscribe({
         next: data => {
+          debugger
+          console.log(data)
           this.selectedProduct = data
+          this.stock = data.stock
 
         },
 

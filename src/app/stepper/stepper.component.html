@@ -156,16 +156,13 @@
                             <div class="form-group w-100 mb-3">
                                 <label for="quantity" class="text-muted mb-2">Quantity</label>
                                 <input id="quantity" type="number" class="form-control bg-light"
-                                    placeholder="Enter quantity" formControlName="quantity" />
+                                    placeholder="Enter quantity" formControlName="quantity" [max]="stock" min="0" />
                             </div>
                             <div class="invalid-feedback"
                                 *ngIf="addOrderForm.controls['quantity'].touched && addOrderForm.controls['quantity'].hasError('required')">
                                 The quantity should not be empty.
                             </div>
-                            <!-- <div class="invalid-feedback"
-                                *ngIf="addOrderForm.controls['quantity'].touched && addOrderForm.controls['quantity'].hasError('max')">
-                                The quantity should not more than {{selectedProduct.stock}}
-                            </div> -->
+
                             <!-- Payment Method -->
                             <div class="form-group w-100 mb-3">
                                 <label for="payment-method" class="text-muted mb-2">Payment Method</label>

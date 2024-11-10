@@ -21,8 +21,10 @@ export class UsersListComponent implements OnInit {
   }
 
   loadAll() {
+    debugger
     this.usersService.loadAllUsers().subscribe({
       next: data => {
+        debugger
         this.users = data
       },
     })

@@ -45,8 +45,10 @@ export class NewUserComponent implements OnInit {
       password: ['', Validators.required],
       phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern("07(7|8|9)\\d{7}")])],
       roles: ['', Validators.required],
-      warehouse: ['', Validators.required]
+      warehouse: ['', Validators.required],
+      image: ['']
     });
+
 
     if (this.isEdit) {
       this.addUserForm.controls['password'].clearValidators();
@@ -59,7 +61,7 @@ export class NewUserComponent implements OnInit {
 
   }
   update() {
-
+    debugger
     this.showError = true;
     this.addUserForm.get('password')?.disable();
     if (this.addUserForm.valid) {

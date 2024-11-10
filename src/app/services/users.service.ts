@@ -19,6 +19,7 @@ export class UsersService {
   }
 
   loadAllUsers(): Observable<any> {
+    debugger
     return this.client.get(this.baseURl + '/api/Account/loadAllUsers')
   }
   addUser(user: AddUserDTO): Observable<any> {
