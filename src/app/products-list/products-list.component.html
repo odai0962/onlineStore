@@ -95,12 +95,14 @@
             </td>
             <td>
                 <p class="fw-normal mb-1">{{product.stock}}</p>
+
+                <span *ngIf="product.stock <= 0" class="badge bg-danger">Out of Stock</span>
             </td>
             <td>
                 <p class="fw-normal mb-1">{{product.price}}jd</p>
             </td>
             <td>
-                <!-- Dropdown Action Button -->
+
                 <div class="btn-group">
                     <button type="button" class="btn " data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
@@ -123,4 +125,5 @@
             </td>
         </tr>
     </tbody>
+
 </table>

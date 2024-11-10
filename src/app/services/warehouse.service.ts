@@ -31,4 +31,13 @@ export class WarehouseService {
   searchByLocation(location: string): Observable<any> {
     return this.client.get(this.baseURl + '/api/Warehouse/searchByLocation?location=' + location)
   }
+
+  // filters
+  searchByStatus(status: boolean): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Warehouse/searchByStatus?status=' + status)
+  }
+  searchByCapacity(capacity: number): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Warehouse/searchByCapacity?capacity=' + capacity)
+  }
+
 }

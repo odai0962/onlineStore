@@ -93,7 +93,8 @@
 
             </td>
             <td>
-                <p class="fw-normal mb-1">{{order.orderStatus}}</p>
+                <p class="fw-normal mb-1" [ngClass]="{'text-danger': order.orderStatus === 'Cancelled'}">
+                    {{order.orderStatus}}</p>
 
             </td>
             <td>

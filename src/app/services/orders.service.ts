@@ -32,4 +32,13 @@ export class OrdersService {
   updateOrder(order: Order): Observable<any> {
     return this.client.put(this.baseURl + '/api/Order/updateOrder?orderDTO=', order);
   }
+
+  // filters
+  searchByStatus(status: string): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Order/searchByStatus?status=' + status);
+  }
+  searchByPaymentMethod(paymentMethod: string): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Order/searchByPaymentMethod?paymentMethod=' + paymentMethod);
+  }
+
 }

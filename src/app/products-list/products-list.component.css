@@ -8,3 +8,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.badge.bg-danger {
+    font-size: 0.9em;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+}

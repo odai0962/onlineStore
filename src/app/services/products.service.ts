@@ -34,4 +34,17 @@ export class ProductsService {
   loadAllProductsUpperThanZero(): Observable<any> {
     return this.client.get(this.baseURl + '/api/Product/loadAllProductsUpperThanZero');
   }
+
+  //filters
+
+  seachByPriceAvarge(min: number, max: number): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/seachByPriceAvarge?min=' + min + '&& max=' + max);
+  }
+  seachByDec(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/seachByDec');
+  }
+  seachByAce(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/seachByAce');
+  }
+
 }
