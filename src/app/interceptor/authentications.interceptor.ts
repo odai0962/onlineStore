@@ -13,7 +13,7 @@ export class AuthenticationsInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    debugger
+
     const token = localStorage.getItem("securityKey")
     if (token) {
       request = request.clone({

@@ -12,10 +12,12 @@ import Swal from 'sweetalert2';
 export class ProductsListComponent implements OnInit {
   products!: Products[]
   profilImage!: any
+  minPrice: number = 0;
+  maxPrice: number = 1000;
+
   @ViewChild('searchText') name!: ElementRef
   constructor(private router: Router, private service: ProductsService) {
     var info = localStorage.getItem('userInfo');
-
 
     if (info) {
       var parsedInfo = JSON.parse(info);
@@ -98,4 +100,44 @@ export class ProductsListComponent implements OnInit {
     });
 
   }
+
+  seachByPriceAvarge() {
+    this.service.seachByPriceAvarge(this.minPrice, this.maxPrice).subscribe({
+      next: data => {
+        this.products = data
+      }
+    })
+
+  }
+  onOrderByChange(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue === 'ascending') {
+      this.seachByAce();
+    } else if (selectedValue === 'descending') {
+      this.seachByDec();
+    }
+  }
+  seachByDec() {
+
+    this.service.seachByDec().subscribe({
+      next: data => {
+
+        this.products = data
+      }
+    })
+  }
+  seachByAce() {
+
+    this.service.seachByAce().subscribe({
+      next: data => {
+        this.products = data
+      }
+    })
+  }
+  navigateToProfile() {
+
+    this.router.navigate(['/home/profile'])
+  }
+
+
 }

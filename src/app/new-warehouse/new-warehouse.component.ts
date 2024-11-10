@@ -40,7 +40,7 @@ export class NewWarehouseComponent {
   update() {
     this.showError = true;
     if (this.addWarehouseForm.valid) {
-      debugger
+
       var warehouse = new Warehouse();
       warehouse.warehouseId = this.warehouseId
       warehouse.manager = this.addWarehouseForm.value['manager']
@@ -95,7 +95,7 @@ export class NewWarehouseComponent {
   saveBtn() {
     this.showError = true;
     if (this.addWarehouseForm.valid) {
-      debugger
+
       var warehouse = new Warehouse();
       warehouse.manager = this.addWarehouseForm.value['manager']
       warehouse.location = this.addWarehouseForm.value['location']

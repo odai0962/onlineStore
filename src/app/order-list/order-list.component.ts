@@ -17,11 +17,10 @@ export class OrderListComponent implements OnInit {
   profilImage!: any
   profileInfo!: object
   product!: Products
-
+  selectedOrderState!: string;
+  selectedpymentMethod!: string;
   constructor(private router: Router, private ordersService: OrdersService) {
     var info = localStorage.getItem('userInfo');
-
-
     if (info) {
       var parsedInfo = JSON.parse(info);
       var profilImage = parsedInfo.profileImage;
@@ -37,14 +36,14 @@ export class OrderListComponent implements OnInit {
     this.reloadOrders()
   }
   search() {
-    debugger
+
     if (this.address.nativeElement.value.length == 0) {
       this.reloadOrders()
     } else {
-      debugger
+
       this.ordersService.searchByAddress(this.address.nativeElement.value).subscribe({
         next: data => {
-          debugger
+
           if (data.length == 0) {
             Swal.fire("no data found!");
             this.reloadOrders()
@@ -101,5 +100,36 @@ export class OrderListComponent implements OnInit {
       }
     });
 
+  }
+  searchByStatus() {
+    if (this.selectedOrderState == "") {
+      this.reloadOrders()
+    } else {
+      this.ordersService.searchByStatus(this.selectedOrderState).subscribe({
+        next: (data) => {
+          this.orders = data;
+        },
+        error: (err) => {
+          console.error('Error fetching orders', err);
+        }
+      });
+    }
+
+  }
+  searchByPymentMethod() {
+    if (this.selectedpymentMethod == "") {
+      this.reloadOrders()
+    } else {
+      this.ordersService.searchByPaymentMethod(this.selectedpymentMethod).subscribe({
+        next: data => {
+          this.orders = data
+        }
+      })
+    }
+
+  }
+  navigateToProfile() {
+
+    this.router.navigate(['/home/profile'])
   }
 }

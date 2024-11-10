@@ -13,13 +13,15 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
 import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StepperComponent } from './stepper/stepper.component';
 import { AuthenticationsInterceptor } from './interceptor/authentications.interceptor';
 import { ErrorHandlingInterceptor } from './interceptor/error-handling.interceptor';
 import { Error404Component } from './error404/error404.component';
 import { Error401Component } from './error401/error401.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -37,13 +39,17 @@ import { Error401Component } from './error401/error401.component';
     NewWarehouseComponent,
     StepperComponent,
     Error404Component,
-    Error401Component
+    Error401Component,
+    ProfileComponent,
+    DashboardComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationsInterceptor, multi: true },

@@ -14,3 +14,66 @@
     padding: 0.3rem 0.6rem;
     border-radius: 0.25rem;
 }
+
+/* Style for the form group container */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+/* Style for the label */
+.slider-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left;
+}
+
+/* Style for the slider */
+.slider {
+    -webkit-appearance: none;
+    /* Removes the default look for Webkit browsers */
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Slider Thumb Style */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+}
+
+/* Hover effect on slider thumb */
+.slider:hover {
+    background: #ccc;
+}
+
+.slider:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for when the slider value is changed */
+.slider:active {
+    background: #007bff;
+}

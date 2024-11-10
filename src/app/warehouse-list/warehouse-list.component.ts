@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 export class WarehouseListComponent implements OnInit {
   warehouses!: Warehouse[]
   profilImage!: any
+  selectedStatus!: boolean
+
   @ViewChild('searchText') location!: ElementRef
   constructor(private router: Router, private warehouseService: WarehouseService) {
 
@@ -92,5 +94,21 @@ export class WarehouseListComponent implements OnInit {
       },
 
     })
+  }
+
+  searchByStatus() {
+    if (this.selectedStatus == null) {
+      this.reloadWarehouse()
+    } else {
+      this.warehouseService.searchByStatus(this.selectedStatus).subscribe({
+        next: data => {
+          this.warehouses = data
+        }
+      })
+    }
+  }
+  navigateToProfile() {
+
+    this.router.navigate(['/home/profile'])
   }
 }

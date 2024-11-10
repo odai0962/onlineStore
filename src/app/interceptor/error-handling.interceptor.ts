@@ -18,7 +18,6 @@ export class ErrorHandlingInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        debugger
         let msg = '';
         switch (error.status) {
           case 404:

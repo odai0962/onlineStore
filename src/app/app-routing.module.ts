@@ -15,6 +15,8 @@ import { StepperComponent } from './stepper/stepper.component';
 import { Error404Component } from './error404/error404.component';
 import { Error401Component } from './error401/error401.component';
 import { authenticationGuard } from './guards/authentication.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
       { path: 'productsList', component: ProductsListComponent },
       { path: 'newProduct', component: NewProductComponent },
       { path: 'stepper', component: StepperComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'Dashboard', component: DashboardComponent },
 
     ]
   },

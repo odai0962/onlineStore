@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   loadAllUsers(): Observable<any> {
-    debugger
+
     return this.client.get(this.baseURl + '/api/Account/loadAllUsers')
   }
   addUser(user: AddUserDTO): Observable<any> {
@@ -36,7 +36,7 @@ export class UsersService {
     return this.client.put(this.baseURl + '/api/Account/updateUser', user)
   }
   login(login: Login): Observable<any> {
-    debugger
+
     return this.client.post(this.baseURl + '/api/Account/SignIn?signinDTO=', login)
   }
   getRoleByUserName(userName: string): Observable<any> {
@@ -48,4 +48,13 @@ export class UsersService {
   searchByName(name: string): Observable<any> {
     return this.client.get(this.baseURl + '/api/Account/searchByName?name=' + name)
   }
+  changePassword(currentPassword: string, newPassword: string, user: User): Observable<any> {
+    const payload = {
+      currentPassword: currentPassword,
+      newPassword: newPassword,
+      user: user
+    };
+    return this.client.put(this.baseURl + '/api/Account/changePassword', payload);
+  }
+
 }

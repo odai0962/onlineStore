@@ -96,4 +96,9 @@ export class UsersListComponent implements OnInit {
     });
 
   }
+  navigateToProfile() {
+
+    this.router.navigate(['/home/profile'])
+  }
+
 }

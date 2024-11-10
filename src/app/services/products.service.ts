@@ -16,7 +16,7 @@ export class ProductsService {
     return this.client.get(this.baseURl + '/api/Product/loadAllProduct');
   }
   addProduct(product: Products): Observable<any> {
-    debugger
+
     return this.client.post(this.baseURl + '/api/Product/addProduct', product)
   }
   searchByName(name: string): Observable<any> {
@@ -38,7 +38,7 @@ export class ProductsService {
   //filters
 
   seachByPriceAvarge(min: number, max: number): Observable<any> {
-    return this.client.get(this.baseURl + '/api/Product/seachByPriceAvarge?min=' + min + '&& max=' + max);
+    return this.client.get(this.baseURl + `/api/Product/seachByPriceAvarge?min=${min}&max=${max}`);
   }
   seachByDec(): Observable<any> {
     return this.client.get(this.baseURl + '/api/Product/seachByDec');

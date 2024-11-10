@@ -16,7 +16,7 @@ export class WarehouseService {
     return this.client.get(this.baseURl + '/api/Warehouse/loadAllWarehouse')
   }
   addwharehouse(warehouse: Warehouse): Observable<any> {
-    debugger
+
     return this.client.post(this.baseURl + '/api/Warehouse', warehouse)
   }
   deleteWarehouse(id: number): Observable<any> {

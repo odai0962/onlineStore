@@ -20,9 +20,10 @@
             <!-- Avatar -->
             <div class="dropdown">
                 <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
-                    <img src="{{profilImage}}" class="rounded-circle" height="45px"
-                        alt="Black and White Portrait of a Man" loading="lazy" />
+                    <img src="{{profilImage}}" class="rounded-circle" height="45"
+                        alt="Black and White Portrait of a Man" loading="lazy" (click)="navigateToProfile()" />
                 </a>
+
 
             </div>
         </div>
@@ -40,6 +41,15 @@
 <nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
     <div class="container-fluid">
         <a class="navbar-brand">Warehouse</a>
+
+        <div class="form-group col-md-4" style="width: 150px;">
+            <label for="status">Status</label>
+            <select id="status" class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="searchByStatus()">
+                <!-- <option selected [value]=null>Choose...</option> -->
+                <option [value]=true>Active</option>
+                <option [value]=false>Inactive</option>
+            </select>
+        </div>
         <form class="d-flex" role="search">
             <input type="search" class="form-control rounded" placeholder="Search By location" aria-label="Search"
                 aria-describedby="search-addon" #searchText />
