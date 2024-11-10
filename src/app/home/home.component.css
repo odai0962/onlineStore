@@ -1,0 +1,22 @@
+* {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+/* Style for active link */
+.active-link {
+    background-color: #007bff;
+    /* Change this to your desired background color */
+    color: white;
+    /* Change the text color for the active link */
+}
+
+.nav-link {
+    color: white;
+    /* Default text color for all links */
+}
+
+/* Optional: Style for hover */
+.nav-link:hover {
+    background-color: #555;
+}

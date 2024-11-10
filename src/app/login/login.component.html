@@ -1,0 +1,67 @@
+<section class="vh-100" style="background-color: #9A616D; 
+           background-image: linear-gradient(rgba(66, 66, 66, 0.7), rgba(0, 0, 0, 0.7)), 
+           url('https://png.pngtree.com/background/20230527/original/pngtree-large-warehouse-storage-space-with-large-boxes-picture-image_2764685.jpg'); 
+           background-repeat: no-repeat; 
+           background-size: cover; 
+           background-position: center;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem; background: rgba(255, 255, 255, 0.9);">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://png.pngtree.com/png-clipart/20231016/original/pngtree-scan-delivery-process-png-image_13319218.png"
+                                alt="login form" class="img-fluid"
+                                style="border-radius: 1rem 0 0 1rem; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <form [formGroup]="loginFrom">
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                        <span class="h1 fw-bold mb-0" style="color: #333;">Your Logo</span>
+                                    </div>
+
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #555;">Sign into
+                                        your account</h5>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example17">Username</label>
+                                        <input type="email" id="form2Example17" class="form-control form-control-lg"
+                                            formControlName="username" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="loginFrom.controls['username'].touched && loginFrom.hasError('required','username')">
+                                            The username should not be empty.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example27">Password</label>
+                                        <input type="password" id="form2Example27" class="form-control form-control-lg"
+                                            formControlName="password" />
+                                        <div class="invalid-feedback"
+                                            *ngIf="loginFrom.controls['password'].touched && loginFrom.hasError('required','password')">
+                                            The password should not be empty.
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <div class="pt-1 mb-4">
+                                    <button class="btn btn-dark btn-lg btn-block" type="button" (click)="loginBtn()"
+                                        style="border-radius: 50px;">
+                                        Login
+                                    </button>
+                                </div>
+                                <div *ngIf="showError && !loginFrom.valid" class="text-danger">
+                                    Please fill in all required fields correctly before saving.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

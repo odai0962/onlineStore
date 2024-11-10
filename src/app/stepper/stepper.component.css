@@ -1,0 +1,208 @@
+/* General Styles */
+.stepper {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    padding: 50px 0;
+}
+
+.invalid-feedback {
+    display: block;
+
+}
+
+.steps-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.step {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.step:hover {
+    background-color: #2f8eff;
+    color: white;
+}
+
+.step.active {
+    background-color: #2f8eff;
+    color: white;
+}
+
+.step .step-number {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.step .step-text {
+    font-size: 14px;
+    color: #777;
+}
+
+.stepper-content-container {
+    width: 100%;
+    margin: 0 auto;
+
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stepper Content Transitions */
+.stepper-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.stepper-content.fade-in {
+    display: block;
+    opacity: 1;
+}
+
+/* Form Fields Styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.selected {
+    border: 2px solid #007bff;
+    /* Change to the color you prefer */
+    background-color: #f0f8ff;
+    /* Optional: change background color */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #2f8eff;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    background-color: #2f8eff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e6bd2;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Text & Labels */
+.text-muted {
+    font-size: 14px;
+    color: #777;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.pe-0,
+.pb-10,
+.ps-0 {
+    padding: 0;
+}
+
+/* Container for Step Content */
+.stepper-content .p-10 {
+    padding: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step {
+        margin: 10px 0;
+    }
+
+    .stepper-content-container {
+        width: 95%;
+    }
+}

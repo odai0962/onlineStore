@@ -1,0 +1,233 @@
+<div height="800px" class="stepper" id="stepper">
+    <div class="steps-container">
+        <div class="steps">
+            <div class="step" icon="fa fa-pencil-alt" [ngClass]="{'active': step === 1}">
+                <div class="step-title">
+                    <span class="step-number">01</span>
+
+                </div>
+            </div>
+            <div class="step" icon="fa fa-info-circle" [ngClass]="{'active': step === 2}">
+                <div class="step-title">
+                    <span class="step-number">02</span>
+
+                </div>
+            </div>
+            <div class="step" icon="fa fa-book-reader" [ngClass]="{'active': step === 3}">
+                <div class="step-title">
+                    <span class="step-number">03</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="stepper-content-container">
+        <!-- Step 1 Content -->
+        <div class="stepper-content fade-in" *ngIf="step === 1">
+            <div class="w-100 h-100" style="padding: 30px 10px; background: #f9f9f9">
+                <div class="text-muted pt-20 pe-0 pb-10 ps-0 fw-bold">
+                    <h2>Step 1</h2>
+                </div>
+                <div>
+                    <nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
+                        <div class="container-fluid">
+                            <a class="navbar-brand">Products</a>
+                            <form class="d-flex" role="search">
+                                <input type="search" class="form-control rounded" placeholder="Search"
+                                    aria-label="Search" aria-describedby="search-addon" #searchText />
+                                <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init
+                                    (click)="search()">search</button>
+
+
+                            </form>
+                        </div>
+
+
+
+                    </nav>
+
+
+
+                    <table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; table-layout: fixed;">
+                        <thead class="bg-light">
+                            <tr>
+                                <th style="width: 20%;">Product</th>
+                                <th style="width: 35%;">Description</th>
+                                <th style="width: 15%;">SKU</th>
+                                <th style="width: 15%;">Stock</th>
+                                <th style="width: 15%;">Price</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let product of products" (click)="selectRow(product.productId)"
+                                [class.selected]="selectedRow === product.productId">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://th.bing.com/th/id/OIP.UjpA1BW8S5bIPu9n7oWGBgHaF7?rs=1&pid=ImgDetMain"
+                                            alt="" style="width: 80px; height: 80px;" class="rounded" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{ product.name }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1 truncated">{{ product.description }}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">{{ product.sku }}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">{{ product.stock }}</p>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">{{ product.price }}jd</p>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <button class="btn btn-dark btn-block mb-3 mt-5 ms-auto" [disabled]="isSelectedProduct"
+                        (click)="setStep(2)">
+                        Next
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Step 2 Content -->
+        <div class="stepper-content fade-in" *ngIf="step === 2">
+            <div class="w-100 h-100" style="padding: 30px 10px; background: #f9f9f9">
+                <div class="my-0 mx-auto" style="max-width: 500px; border-radius: 10px; background: #f5f5f5">
+                    <div class="p-10 d-flex flex-column justify-content-center align-items-center">
+                        <div class="text-center pt-20 pe-0 pb-10 ps-0 fw-bold">Step 2</div>
+                        <form [formGroup]="addOrderForm"
+                            class="p-4 d-flex flex-column justify-content-center align-items-center w-100">
+
+                            <!-- Customer Name -->
+                            <div class="form-group w-100 mb-3">
+                                <label class="text-muted mb-2">Customer Name</label>
+                                <input type="text" class="form-control bg-light" placeholder="Enter customer name"
+                                    formControlName="customerName" />
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['customerName'].touched && addOrderForm.controls['customerName'].hasError('required')">
+                                The customer Name should not be empty.
+                            </div>
+                            <!-- Shipping Address -->
+                            <div class="form-group w-100 mb-3">
+                                <label for="shipping-address" class="text-muted mb-2">Shipping Address</label>
+                                <input id="shipping-address" type="text" class="form-control bg-light"
+                                    placeholder="Enter shipping address" formControlName="shippingAddress" />
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['shippingAddress'].touched && addOrderForm.controls['shippingAddress'].hasError('required')">
+                                The shipping address should not be empty.
+                            </div>
+                            <!-- Order Date -->
+                            <div class="form-group w-100 mb-3">
+                                <label for="order-date" class="text-muted mb-2">Order Date</label>
+                                <input id="order-date" type="date" class="form-control bg-light"
+                                    formControlName="orderDate" />
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['orderDate'].touched && addOrderForm.controls['orderDate'].hasError('required')">
+                                The order date should not be empty.
+                            </div>
+                            <!-- Order State -->
+                            <div class="form-group w-100 mb-3">
+                                <label for="order-state" class="text-muted mb-2">Order State</label>
+                                <select id="order-state" formControlName="orderState" class="form-control bg-light">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Delivered">Delivered</option>
+                                    <option value="Canceled">Canceled</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['orderState'].touched && addOrderForm.controls['orderState'].hasError('required')">
+                                The order State should not be empty.
+                            </div>
+                            <!-- Quantity -->
+                            <div class="form-group w-100 mb-3">
+                                <label for="quantity" class="text-muted mb-2">Quantity</label>
+                                <input id="quantity" type="number" class="form-control bg-light"
+                                    placeholder="Enter quantity" formControlName="quantity" />
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['quantity'].touched && addOrderForm.controls['quantity'].hasError('required')">
+                                The quantity should not be empty.
+                            </div>
+                            <!-- <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['quantity'].touched && addOrderForm.controls['quantity'].hasError('max')">
+                                The quantity should not more than {{selectedProduct.stock}}
+                            </div> -->
+                            <!-- Payment Method -->
+                            <div class="form-group w-100 mb-3">
+                                <label for="payment-method" class="text-muted mb-2">Payment Method</label>
+                                <select id="payment-method" class="form-control bg-light"
+                                    formControlName="paymentMethod">
+                                    <option value="Cash">Cash</option>
+                                    <option value="Credit-Card">Credit Card</option>
+                                    <option value="Paypal">PayPal</option>
+                                </select>
+                            </div>
+                            <div class="invalid-feedback"
+                                *ngIf="addOrderForm.controls['paymentMethod'].touched && addOrderForm.controls['paymentMethod'].hasError('required')">
+                                The payment Method should not be empty.
+                            </div>
+                            <!-- Navigation Buttons -->
+                            <div class="d-flex  justify-content-between mt-4">
+                                <button class="btn btn-dark" (click)="setStep(1)">Previous</button>
+                                <button class="btn btn-dark" [disabled]="isValidatForm"
+                                    (click)="setStep(3)">Next</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 Content -->
+
+        <div class="stepper-content fade-in" *ngIf="step === 3">
+            <div class="step-content-wrapper">
+                <div class="text-muted fw-bold">
+                    <h2>Step 3: Confirm Details</h2>
+                </div>
+                <div class="confirmation-content">
+                    <h3>Product Details</h3>
+                    <p><strong>Product Name:</strong> {{ selectedProduct.name }}</p>
+                    <p><strong>Description:</strong> {{ selectedProduct.description }}</p>
+                    <p><strong>SKU:</strong> {{ selectedProduct.sku }}</p>
+                    <p><strong>Price:</strong> {{ selectedProduct.price }} JD</p>
+                    <p><strong>Quantity:</strong>{{order.quantity}}</p>
+                    <p><strong>Total Price:</strong>{{order.totalPrice}} JD</p>
+
+                    <h3>Customer Information</h3>
+                    <p><strong>Customer Name:</strong> {{order.customerName}}</p>
+                    <p><strong>Shipping Address:</strong>{{order.shippingAddress}} </p>
+                    <p><strong>Order Date:</strong>{{order.orderDate | date:'shortDate'}} </p>
+                    <p><strong>Order Status:</strong>{{order.orderStatus}} </p>
+                    <p><strong>Payment Method:</strong>{{order.paymentmethods}} </p>
+
+                    <div class="d-flex w-100 justify-content-between mt-4">
+                        <button class="btn btn-secondary" (click)="setStep(2)">Previous</button>
+                        <button class="btn btn-success" *ngIf="!isEdit" (click)="addOrder()">Save</button>
+                        <button class="btn btn-success" *ngIf="isEdit" (click)="updateOrder()">update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

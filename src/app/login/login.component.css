@@ -1,0 +1,9 @@
+.img-fluid {
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+}
+
+.invalid-feedback {
+    display: block;
+}

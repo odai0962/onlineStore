@@ -1,0 +1,103 @@
+<div class="container mt-5">
+    <h2 *ngIf="!isEdit">Add New Product</h2>
+    <h2 *ngIf="isEdit">Update Product</h2>
+    <form [formGroup]="addProductForm">
+        <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" formControlName="productName" id="productName"
+                placeholder="Enter product name">
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['productName'].touched && addProductForm.controls['productName'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['productName'].invalid }">
+                Product name is required.
+            </div>
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['productName'].touched && addProductForm.controls['productName'].hasError('minlength')"
+                [ngClass]="{ 'active': addProductForm.controls['productName'].invalid }">
+                Product name should have at least 3 characters.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" formControlName="description" id="description"
+                placeholder="Enter product description">
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['description'].touched && addProductForm.controls['description'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['description'].invalid }">
+                Description is required.
+            </div>
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['description'].touched && addProductForm.controls['description'].hasError('minlength')"
+                [ngClass]="{ 'active': addProductForm.controls['description'].invalid }">
+                Description should have at least 10 characters.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="SKU">SKU</label>
+            <input type="text" class="form-control" formControlName="SKU" id="SKU" placeholder="Enter SKU">
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['SKU'].touched && addProductForm.controls['SKU'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['SKU'].invalid }">
+                SKU is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" class="form-control" formControlName="stock" id="stock"
+                placeholder="Enter stock quantity">
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['stock'].touched && addProductForm.controls['stock'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['stock'].invalid }">
+                Stock is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <div class="input-group">
+                <input type="text" formControlName="price" id="price" placeholder="Enter price" class="form-control"
+                    style="width: 90%;">
+                <span class="input-group-text">JD</span> <!-- JD currency after the input -->
+            </div>
+
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['price'].touched && addProductForm.controls['price'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['price'].invalid }">
+                Price is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Upload Image</label>
+            <input type="file" class="form-control" formControlName="image" (change)=" onFileChange($event)" id="image">
+            <div class="invalid-feedback" *ngIf="imageError" [ngClass]="{ 'active': imageError }">
+                Please upload a valid image.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="warehouse">Warehouse</label>
+            <select id="warehouse" formControlName="warehouse" class="form-control">
+                <option selected>Choose Warehouse</option>
+                <option *ngFor="let Warehouse of warehouses" [value]="Warehouse.warehouseId">
+                    {{Warehouse.location}}
+                </option>
+            </select>
+            <div class="invalid-feedback"
+                *ngIf="addProductForm.controls['warehouse'].touched && addProductForm.controls['warehouse'].hasError('required')"
+                [ngClass]="{ 'active': addProductForm.controls['warehouse'].invalid }">
+                Warehouse is required.
+            </div>
+        </div>
+
+        <button type="button" class="btn-primary" *ngIf="!isEdit" (click)="saveBtn()">Save</button>
+        <button type="button" class="btn-primary" *ngIf="isEdit" (click)="update()">update</button>
+
+        <!-- Overall error message -->
+        <div *ngIf="showError && !addProductForm.valid" class="text-danger mt-3">
+            Please fill in all required fields correctly before saving.
+        </div>
+    </form>
+</div>

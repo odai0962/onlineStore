@@ -1,0 +1,183 @@
+/* Global Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    width: 100%;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input and Form Fields */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-control {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    width: 100%;
+    color: #333;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 5px rgba(0, 170, 255, 0.4);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.invalid-feedback {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+.invalid-feedback.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0099cc;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    background-color: #007bb5;
+    transform: translateY(0);
+}
+
+/* Select Dropdown */
+select.form-control {
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    background-color: #fafafa;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+select.form-control:focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 5px rgba(0, 170, 255, 0.4);
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* Error Message for Overall Form */
+.text-danger {
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Ensure all form controls are the same height */
+.form-control {
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+}
+
+/* Input group should stretch to 100% width */
+.input-group {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    /* Makes sure input and JD have the same height */
+}
+
+/* Make sure the input takes up most of the space */
+.input-group .form-control {
+    border-radius: 10px 0 0 10px;
+    /* Rounded left corners */
+    flex-grow: 1;
+    /* Make the input fill available space */
+    padding-right: 50px;
+    /* Space for the JD symbol */
+}
+
+/* Styling for the JD symbol (currency text) */
+.input-group .input-group-text {
+    border-radius: 0 10px 10px 0;
+    /* Rounded right corners */
+    background-color: #fafafa;
+    padding: 14px 20px;
+    /* Matching padding with the input */
+    font-size: 15px;
+    /* Matching font size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional: Ensuring everything looks consistent on smaller screens */
+@media (max-width: 767px) {
+
+    .form-control,
+    .input-group .input-group-text {
+        font-size: 14px;
+        /* Slightly smaller text for mobile screens */
+        padding: 12px 15px;
+        /* Adjust padding for smaller screen */
+    }
+}

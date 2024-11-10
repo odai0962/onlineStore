@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10"
+            style="border: 1px solid #ccc; border-radius: 15px; padding: 40px; background-color: #f9f9f9;">
+            <h2 class="text-center mb-4" *ngIf="!isEdit">Add Warehouse</h2>
+            <h2 class="text-center mb-4" *ngIf="isEdit">update Warehouse</h2>
+            <form [formGroup]="addWarehouseForm">
+                <div class="form-row">
+                    <!-- Manager Name -->
+                    <div class="form-group col-md-6">
+                        <label for="manager">Manager Name</label>
+                        <input type="text" class="form-control" formControlName="manager" id="manager"
+                            placeholder="Manager name">
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['manager'].touched && addWarehouseForm.controls['manager'].hasError('required')">
+                            The manager should not be empty.
+                        </div>
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['manager'].touched && addWarehouseForm.controls['manager'].hasError('minlength')">
+                            The manager should have at least 3 characters.
+                        </div>
+                    </div>
+                    <!-- Location -->
+                    <div class="form-group col-md-6">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" formControlName="location" id="location"
+                            placeholder="Location">
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['location'].touched && addWarehouseForm.controls['location'].hasError('required')">
+                            The location should not be empty.
+                        </div>
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['location'].touched && addWarehouseForm.controls['location'].hasError('minlength')">
+                            The location should have at least 6 characters.
+                        </div>
+                    </div>
+                    <!-- Capacity -->
+                    <div class="form-group col-md-6">
+                        <label for="capacity">Capacity</label>
+                        <input type="text" class="form-control" formControlName="capacity" id="capacity"
+                            placeholder="Capacity">
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['capacity'].touched && addWarehouseForm.controls['capacity'].hasError('required')">
+                            The capacity should not be empty.
+                        </div>
+                    </div>
+                    <!-- Status -->
+                    <div class="form-group col-md-4">
+                        <label for="status">Status</label>
+                        <select id="status" formControlName="status" class="form-control">
+                            <option selected>Choose...</option>
+                            <option [value]=true>Active</option>
+                            <option [value]=false>Inactive</option>
+                        </select>
+                        <div class="invalid-feedback"
+                            *ngIf="addWarehouseForm.controls['status'].touched && addWarehouseForm.controls['status'].hasError('required')">
+                            The status should not be empty.
+                        </div>
+                    </div>
+                </div>
+                <div class="position-relative w-10">
+                    <input hidden formControlName="Id" class="position-absolute search-icon">
+                </div>
+
+                <button type="button" *ngIf="!isEdit" class="btn btn-primary btn-block" style="margin-top: 20px;"
+                    (click)="saveBtn()">Save</button>
+
+                <button type="button" *ngIf="isEdit" class="btn btn-primary btn-block" style="margin-top: 20px;"
+                    (click)="update()">update</button>
+
+                <!-- Error message for overall form validity -->
+                <div *ngIf="showError && !addWarehouseForm.valid" class="text-danger text-center mt-3">
+                    Please fill in all required fields correctly before saving.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

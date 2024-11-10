@@ -1,0 +1,8 @@
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+body {
+    background-color: #f4f4f4;
+    /* Light background for contrast */
+    font-family: 'Arial', sans-serif;
+    /* Modern font */
+}

@@ -1,0 +1,112 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10"
+            style="border: 1px solid #ccc; border-radius: 15px; padding: 40px; background-color: #f9f9f9;">
+            <h2 class="text-center mb-4" *ngIf="!isEdit">Add User</h2>
+            <h2 class="text-center mb-4" *ngIf="isEdit">Update User</h2>
+            <form [formGroup]="addUserForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="userName">User Name</label>
+                        <input type="text" class="form-control" formControlName="userName" id="userName"
+                            placeholder="User name">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['userName'].touched && addUserForm.controls['userName'].hasError('required')">
+                            The username should not be empty.
+                        </div>
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['userName'].touched && addUserForm.controls['userName'].hasError('minlength')">
+                            The username should have at least 6 characters.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Name">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['name'].touched && addUserForm.controls['name'].hasError('required')">
+                            The name should not be empty.
+                        </div>
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['name'].touched && addUserForm.controls['name'].hasError('minlength')">
+                            The name should have at least 3 characters.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['email'].touched && addUserForm.controls['email'].hasError('required')">
+                            The email should not be empty.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber"
+                            placeholder="Phone number">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['phoneNumber'].touched && addUserForm.controls['phoneNumber'].hasError('required')">
+                            The phone should not be empty.
+                        </div>
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['phoneNumber'].touched && addUserForm.controls['phoneNumber'].hasError('pattern')">
+                            Invalid phone number.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" *ngIf="!isEdit">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" formControlName="password" id="password"
+                            placeholder="Password">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['password'].touched && addUserForm.controls['password'].hasError('required')">
+                            The password should not be empty.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Upload Image</label>
+                        <input type="file" class="form-control" formControlName="image" (change)=" onFileChange($event)"
+                            id="image">
+                        <div class="invalid-feedback" *ngIf="imageError" [ngClass]="{ 'active': imageError }">
+                            Please upload a valid image.
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="roles">Role</label>
+                        <select id="roles" formControlName="roles" class="form-control">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
+
+                        </select>
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['roles'].touched && addUserForm.controls['roles'].hasError('required')">
+                            The role should not be empty.
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="warehouse">Warehouse</label>
+                        <select id="warehouse" formControlName="warehouse" class="form-control">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let Warehouse of warehouses" [value]="Warehouse.warehouseId">
+                                {{Warehouse.location}}</option>
+
+                        </select>
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['warehouse'].touched && addUserForm.controls['warehouse'].hasError('required')">
+                            The warehouse should not be empty.
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-block" *ngIf="!isEdit" style="margin-top: 20px;"
+                    (click)="saveBtn()">Save</button>
+                <button type="button" class="btn btn-primary btn-block" *ngIf="isEdit" style="margin-top: 20px;"
+                    (click)="update()">update</button>
+                <!-- Error message for overall form validity -->
+                <div *ngIf="showError && !addUserForm.valid" class="text-danger text-center mt-3">
+                    Please fill in all required fields correctly before saving.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

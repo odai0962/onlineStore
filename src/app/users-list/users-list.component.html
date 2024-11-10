@@ -1,0 +1,123 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height: 80px;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo"
+                    loading="lazy" />
+            </a>
+            <!-- Left links -->
+
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+            <!-- Icon -->
+            <a class="link-secondary me-3" href="#">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+
+            <!-- Avatar -->
+            <div class="dropdown">
+                <a href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25"
+                        alt="Black and White Portrait of a Man" loading="lazy" />
+                </a>
+
+            </div>
+        </div>
+        <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<div style="margin-left: 40px; margin-top: 30px;">
+    <h3>user management</h3>
+</div>
+
+
+<nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
+    <div class="container-fluid">
+        <a class="navbar-brand">Users</a>
+        <form class="d-flex" role="search">
+            <input type="search" class="form-control rounded" placeholder="Search By name" aria-label="Search"
+                aria-describedby="search-addon" #searchText />
+            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init
+                (click)="search()">search</button>
+
+            <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 150px;"
+                (click)="newUser()">Add New</button>
+        </form>
+    </div>
+
+
+
+</nav>
+
+
+
+<table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
+    <thead class="bg-light">
+        <tr>
+            <th>Name</th>
+            <th>phone number</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>
+                <div class="d-flex align-items-center">
+
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1">{{user.name}}</p>
+                        <p class="text-muted mb-0">{{user.email}}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">{{user.phoneNumber}}</p>
+
+            </td>
+            <td>
+                <p class="fw-normal mb-1">{{user.roles}}</p>
+
+            </td>
+
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn " data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <a class="dropdown-item" (click)="edit(user.userId)">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+
+                        <a class="dropdown-item" (click)="deleteUser(user.userId)">
+                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> Delete
+                        </a>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
