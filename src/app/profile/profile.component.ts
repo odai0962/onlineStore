@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
       userInfo.userName = parsedInfo.userName;
       userInfo.warehouseId = parsedInfo.warehouseId;
       userInfo.roles = roles
+      userInfo.userId = parsedInfo.userId
       this.userInfo = userInfo
       console.log(this.userInfo)
     } else {
@@ -45,11 +46,13 @@ export class ProfileComponent implements OnInit {
   }
 
   changePasswordBtn() {
+    debugger
     if (this.changePasswordForm.valid) {
       var userPassword = new PasswordDTO()
       userPassword.currentPassword = this.changePasswordForm.controls['currentPassword'].value
       userPassword.newPassword = this.changePasswordForm.controls['newPassword'].value
       userPassword.confirmPassword = this.changePasswordForm.controls['confirmPassword'].value
+      userPassword.userId = this.userInfo.userId
 
       if (userPassword.newPassword == userPassword.confirmPassword) {
         Swal.fire({
@@ -60,9 +63,11 @@ export class ProfileComponent implements OnInit {
           denyButtonText: `Don't Add`
 
         }).then((result) => {
+
           if (result.isConfirmed) {
-            this.userService.changePassword(userPassword.currentPassword, userPassword.newPassword, this.userInfo).subscribe({
+            this.userService.changePassword(userPassword).subscribe({
               next: data => {
+                debugger
                 Swal.fire("Saved!", "", "success");
               }
             })

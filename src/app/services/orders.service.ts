@@ -41,4 +41,10 @@ export class OrdersService {
     return this.client.get(this.baseURl + '/api/Order/searchByPaymentMethod?paymentMethod=' + paymentMethod);
   }
 
+  totalOrders(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Order/totalOrders')
+  }
+  higherTotalPriceOrder(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Order/higherTotalPriceOrder')
+  }
 }

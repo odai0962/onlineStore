@@ -10,15 +10,11 @@
 
         <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         </div>
         <!-- Collapsible wrapper -->
 
         <!-- Right elements -->
         <div class="d-flex align-items-center">
-            <!-- Icon -->
-
-
             <!-- Avatar -->
             <div class="dropdown">
                 <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
@@ -26,7 +22,6 @@
                         alt="Black and White Portrait of a Man" loading="lazy" (click)="navigateToProfile()" />
                 </a>
             </div>
-
         </div>
     </div>
     <!-- Right elements -->
@@ -36,44 +31,40 @@
 <!-- Navbar -->
 
 <div style="margin-left: 40px; margin-top: 30px;">
-    <h3>user management</h3>
+    <h3>{{ 'userManagement.title' | translate }}</h3>
 </div>
-
 
 <nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
     <div class="container-fluid">
-        <a class="navbar-brand">Users</a>
+        <a class="navbar-brand">{{ 'userManagement.users' | translate }}</a>
         <form class="d-flex" role="search">
-            <input type="search" class="form-control rounded" placeholder="Search By name" aria-label="Search"
+            <input type="search" class="form-control rounded"
+                placeholder="{{ 'userManagement.searchByName' | translate }}" aria-label="Search"
                 aria-describedby="search-addon" #searchText />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init
-                (click)="search()">search</button>
+            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">
+                {{ 'userManagement.search' | translate }}
+            </button>
 
-            <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 150px;"
-                (click)="newUser()">Add New</button>
+            <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 150px;" (click)="newUser()">
+                {{ 'userManagement.addNew' | translate }}
+            </button>
         </form>
     </div>
-
-
-
 </nav>
 
-
-
-<table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
+<table class="table table-hover align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
     <thead class="bg-light">
         <tr>
-            <th>Name</th>
-            <th>phone number</th>
-            <th>Role</th>
-            <th>Actions</th>
+            <th>{{ 'userManagement.name' | translate }}</th>
+            <th>{{ 'userManagement.phoneNumber' | translate }}</th>
+            <th>{{ 'userManagement.role' | translate }}</th>
+            <th>{{ 'userManagement.actions' | translate }}</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
             <td>
                 <div class="d-flex align-items-center">
-
                     <div class="ms-3">
                         <p class="fw-bold mb-1">{{user.name}}</p>
                         <p class="text-muted mb-0">{{user.email}}</p>
@@ -82,31 +73,27 @@
             </td>
             <td>
                 <p class="fw-normal mb-1">{{user.phoneNumber}}</p>
-
             </td>
             <td>
                 <p class="fw-normal mb-1">{{user.roles}}</p>
-
             </td>
-
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn " data-bs-toggle="dropdown" aria-haspopup="true"
+                    <button type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </button>
 
                     <div class="dropdown-menu">
-
                         <a class="dropdown-item" (click)="edit(user.userId)">
-                            <i class="fas fa-edit"></i> Edit
+                            <i class="fas fa-edit"></i> {{ 'userManagement.edit' | translate }}
                         </a>
 
                         <a class="dropdown-item" (click)="deleteUser(user.userId)">
-                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> Delete
+                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> {{ 'userManagement.delete' |
+                            translate }}
                         </a>
                     </div>
-
                 </div>
             </td>
         </tr>

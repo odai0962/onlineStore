@@ -1,103 +1,116 @@
 <div class="container mt-5">
-    <h2 *ngIf="!isEdit">Add New Product</h2>
-    <h2 *ngIf="isEdit">Update Product</h2>
+    <h2 *ngIf="!isEdit">{{ 'productForm.addNewProduct' | translate }}</h2>
+    <h2 *ngIf="isEdit">{{ 'productForm.updateProduct' | translate }}</h2>
+
     <form [formGroup]="addProductForm">
+        <!-- Product Name -->
         <div class="form-group">
-            <label for="productName">Product Name</label>
+            <label for="productName">{{ 'productForm.productName' | translate }}</label>
             <input type="text" class="form-control" formControlName="productName" id="productName"
-                placeholder="Enter product name">
+                placeholder="{{ 'productForm.enterProductName' | translate }}">
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['productName'].touched && addProductForm.controls['productName'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['productName'].invalid }">
-                Product name is required.
+                {{ 'productForm.productNameRequired' | translate }}
             </div>
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['productName'].touched && addProductForm.controls['productName'].hasError('minlength')"
                 [ngClass]="{ 'active': addProductForm.controls['productName'].invalid }">
-                Product name should have at least 3 characters.
+                {{ 'productForm.productNameMinLength' | translate }}
             </div>
         </div>
 
+        <!-- Description -->
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">{{ 'productForm.description' | translate }}</label>
             <input type="text" class="form-control" formControlName="description" id="description"
-                placeholder="Enter product description">
+                placeholder="{{ 'productForm.enterDescription' | translate }}">
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['description'].touched && addProductForm.controls['description'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['description'].invalid }">
-                Description is required.
+                {{ 'productForm.descriptionRequired' | translate }}
             </div>
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['description'].touched && addProductForm.controls['description'].hasError('minlength')"
                 [ngClass]="{ 'active': addProductForm.controls['description'].invalid }">
-                Description should have at least 10 characters.
+                {{ 'productForm.descriptionMinLength' | translate }}
             </div>
         </div>
 
+        <!-- SKU -->
         <div class="form-group">
-            <label for="SKU">SKU</label>
-            <input type="text" class="form-control" formControlName="SKU" id="SKU" placeholder="Enter SKU">
+            <label for="SKU">{{ 'productForm.sku' | translate }}</label>
+            <input type="text" class="form-control" formControlName="SKU" id="SKU"
+                placeholder="{{ 'productForm.enterSKU' | translate }}">
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['SKU'].touched && addProductForm.controls['SKU'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['SKU'].invalid }">
-                SKU is required.
+                {{ 'productForm.skuRequired' | translate }}
             </div>
         </div>
 
+        <!-- Stock -->
         <div class="form-group">
-            <label for="stock">Stock</label>
+            <label for="stock">{{ 'productForm.stock' | translate }}</label>
             <input type="text" class="form-control" formControlName="stock" id="stock"
-                placeholder="Enter stock quantity">
+                placeholder="{{ 'productForm.enterStock' | translate }}">
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['stock'].touched && addProductForm.controls['stock'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['stock'].invalid }">
-                Stock is required.
+                {{ 'productForm.stockRequired' | translate }}
             </div>
         </div>
 
+        <!-- Price -->
         <div class="form-group">
-            <label for="price">Price</label>
+            <label for="price">{{ 'productForm.price' | translate }}</label>
             <div class="input-group">
-                <input type="text" formControlName="price" id="price" placeholder="Enter price" class="form-control"
-                    style="width: 90%;">
-                <span class="input-group-text">JD</span> <!-- JD currency after the input -->
+                <input type="text" formControlName="price" id="price"
+                    placeholder="{{ 'productForm.enterPrice' | translate }}" class="form-control" style="width: 90%;">
+                <span class="input-group-text">JD</span>
             </div>
 
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['price'].touched && addProductForm.controls['price'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['price'].invalid }">
-                Price is required.
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="image">Upload Image</label>
-            <input type="file" class="form-control" formControlName="image" (change)=" onFileChange($event)" id="image">
-            <div class="invalid-feedback" *ngIf="imageError" [ngClass]="{ 'active': imageError }">
-                Please upload a valid image.
+                {{ 'productForm.priceRequired' | translate }}
             </div>
         </div>
 
+        <!-- Image Upload -->
         <div class="form-group">
-            <label for="warehouse">Warehouse</label>
+            <label for="image">{{ 'productForm.uploadImage' | translate }}</label>
+            <input type="file" class="form-control" formControlName="image" (change)="onFileChange($event)" id="image">
+            <div class="invalid-feedback" *ngIf="imageError" [ngClass]="{ 'active': imageError }">
+                {{ 'productForm.validImageRequired' | translate }}
+            </div>
+        </div>
+
+        <!-- Warehouse -->
+        <div class="form-group">
+            <label for="warehouse">{{ 'productForm.warehouse' | translate }}</label>
             <select id="warehouse" formControlName="warehouse" class="form-control">
-                <option selected>Choose Warehouse</option>
+                <option selected>{{ 'productForm.chooseWarehouse' | translate }}</option>
                 <option *ngFor="let Warehouse of warehouses" [value]="Warehouse.warehouseId">
-                    {{Warehouse.location}}
+                    {{ Warehouse.location }}
                 </option>
             </select>
             <div class="invalid-feedback"
                 *ngIf="addProductForm.controls['warehouse'].touched && addProductForm.controls['warehouse'].hasError('required')"
                 [ngClass]="{ 'active': addProductForm.controls['warehouse'].invalid }">
-                Warehouse is required.
+                {{ 'productForm.warehouseRequired' | translate }}
             </div>
         </div>
 
-        <button type="button" class="btn-primary" *ngIf="!isEdit" (click)="saveBtn()">Save</button>
-        <button type="button" class="btn-primary" *ngIf="isEdit" (click)="update()">update</button>
+        <!-- Save/Update Buttons -->
+        <button type="button" class="btn-primary" *ngIf="!isEdit" (click)="saveBtn()">{{ 'buttons.save' | translate
+            }}</button>
+        <button type="button" class="btn-primary" *ngIf="isEdit" (click)="update()">{{ 'buttons.update' | translate
+            }}</button>
 
         <!-- Overall error message -->
         <div *ngIf="showError && !addProductForm.valid" class="text-danger mt-3">
-            Please fill in all required fields correctly before saving.
+            {{ 'productForm.fillAllFields' | translate }}
         </div>
     </form>
 </div>

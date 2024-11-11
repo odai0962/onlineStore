@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from '../menu';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,8 @@ export class HomeComponent {
   liMenu: any = [];
   filteredMenu: any = [];
   roles!: string;
-
-  constructor(private router: Router) {
+  @ViewChild('language') language!: ElementRef
+  constructor(private router: Router, private translate: TranslateService) {
     this.liMenu = Menu; // Directly assigning Menu array
     this.roles = JSON.parse(JSON.stringify(localStorage.getItem('userRole')));
 
@@ -30,5 +31,13 @@ export class HomeComponent {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userInfo');
     this.router.navigate(['/']);
+  }
+  changeLanguage() {
+    this.translate.use(this.language.nativeElement.value);
+    if (this.language.nativeElement.value == 'ar') {
+      document.getElementsByTagName('body')[0].dir = 'rtl'
+    } else {
+      document.getElementsByTagName('body')[0].dir = 'ltr'
+    }
   }
 }

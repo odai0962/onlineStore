@@ -40,4 +40,12 @@ export class WarehouseService {
     return this.client.get(this.baseURl + '/api/Warehouse/searchByCapacity?capacity=' + capacity)
   }
 
+  //dashboard
+  totalWarehouses(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Warehouse/totalWarehouses')
+  }
+  higherWarehouseCapacity(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Warehouse/higherWarehouseCapacity')
+  }
+
 }

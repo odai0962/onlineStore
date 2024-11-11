@@ -2,109 +2,124 @@
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10"
             style="border: 1px solid #ccc; border-radius: 15px; padding: 40px; background-color: #f9f9f9;">
-            <h2 class="text-center mb-4" *ngIf="!isEdit">Add User</h2>
-            <h2 class="text-center mb-4" *ngIf="isEdit">Update User</h2>
+            <h2 class="text-center mb-4" *ngIf="!isEdit">{{ 'userForm.addUser' | translate }}</h2>
+            <h2 class="text-center mb-4" *ngIf="isEdit">{{ 'userForm.updateUser' | translate }}</h2>
             <form [formGroup]="addUserForm">
                 <div class="form-row">
+                    <!-- User Name -->
                     <div class="form-group col-md-6">
-                        <label for="userName">User Name</label>
+                        <label for="userName">{{ 'userForm.userName' | translate }}</label>
                         <input type="text" class="form-control" formControlName="userName" id="userName"
-                            placeholder="User name">
+                            placeholder="{{ 'userForm.userNamePlaceholder' | translate }}">
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['userName'].touched && addUserForm.controls['userName'].hasError('required')">
-                            The username should not be empty.
+                            {{ 'userForm.userNameRequired' | translate }}
                         </div>
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['userName'].touched && addUserForm.controls['userName'].hasError('minlength')">
-                            The username should have at least 6 characters.
+                            {{ 'userForm.userNameMinLength' | translate }}
                         </div>
                     </div>
+
+                    <!-- Name -->
                     <div class="form-group col-md-6">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Name">
+                        <label for="name">{{ 'userForm.name' | translate }}</label>
+                        <input type="text" class="form-control" formControlName="name" id="name"
+                            placeholder="{{ 'userForm.namePlaceholder' | translate }}">
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['name'].touched && addUserForm.controls['name'].hasError('required')">
-                            The name should not be empty.
+                            {{ 'userForm.nameRequired' | translate }}
                         </div>
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['name'].touched && addUserForm.controls['name'].hasError('minlength')">
-                            The name should have at least 3 characters.
+                            {{ 'userForm.nameMinLength' | translate }}
                         </div>
                     </div>
+
+                    <!-- Email -->
                     <div class="form-group col-md-6">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email">
+                        <label for="email">{{ 'userForm.email' | translate }}</label>
+                        <input type="email" class="form-control" formControlName="email" id="email"
+                            placeholder="{{ 'userForm.emailPlaceholder' | translate }}">
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['email'].touched && addUserForm.controls['email'].hasError('required')">
-                            The email should not be empty.
+                            {{ 'userForm.emailRequired' | translate }}
                         </div>
                     </div>
+
+                    <!-- Phone Number -->
                     <div class="form-group col-md-6">
-                        <label for="phoneNumber">Phone Number</label>
+                        <label for="phoneNumber">{{ 'userForm.phoneNumber' | translate }}</label>
                         <input type="text" class="form-control" formControlName="phoneNumber" id="phoneNumber"
-                            placeholder="Phone number">
+                            placeholder="{{ 'userForm.phoneNumberPlaceholder' | translate }}">
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['phoneNumber'].touched && addUserForm.controls['phoneNumber'].hasError('required')">
-                            The phone should not be empty.
+                            {{ 'userForm.phoneRequired' | translate }}
                         </div>
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['phoneNumber'].touched && addUserForm.controls['phoneNumber'].hasError('pattern')">
-                            Invalid phone number.
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6" *ngIf="!isEdit">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" formControlName="password" id="password"
-                            placeholder="Password">
-                        <div class="invalid-feedback"
-                            *ngIf="addUserForm.controls['password'].touched && addUserForm.controls['password'].hasError('required')">
-                            The password should not be empty.
+                            {{ 'userForm.phoneInvalid' | translate }}
                         </div>
                     </div>
 
+                    <!-- Password (only for create user) -->
+                    <div class="form-group col-md-6" *ngIf="!isEdit">
+                        <label for="password">{{ 'userForm.password' | translate }}</label>
+                        <input type="password" class="form-control" formControlName="password" id="password"
+                            placeholder="{{ 'userForm.passwordPlaceholder' | translate }}">
+                        <div class="invalid-feedback"
+                            *ngIf="addUserForm.controls['password'].touched && addUserForm.controls['password'].hasError('required')">
+                            {{ 'userForm.passwordRequired' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Image Upload -->
                     <div class="form-group">
-                        <label for="image">Upload Image</label>
+                        <label for="image">{{ 'userForm.uploadImage' | translate }}</label>
                         <input type="file" class="form-control" formControlName="image" (change)=" onFileChange($event)"
                             id="image">
                         <div class="invalid-feedback" *ngIf="imageError" [ngClass]="{ 'active': imageError }">
-                            Please upload a valid image.
+                            {{ 'userForm.imageError' | translate }}
                         </div>
                     </div>
 
+                    <!-- Role -->
                     <div class="form-group col-md-4">
-                        <label for="roles">Role</label>
+                        <label for="roles">{{ 'userForm.role' | translate }}</label>
                         <select id="roles" formControlName="roles" class="form-control">
-                            <option selected>Choose...</option>
+                            <option selected>{{ 'userForm.chooseRole' | translate }}</option>
                             <option *ngFor="let role of roles" [value]="role.roleName">{{role.roleName}}</option>
-
                         </select>
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['roles'].touched && addUserForm.controls['roles'].hasError('required')">
-                            The role should not be empty.
+                            {{ 'userForm.roleRequired' | translate }}
                         </div>
                     </div>
+
+                    <!-- Warehouse -->
                     <div class="form-group col-md-4">
-                        <label for="warehouse">Warehouse</label>
+                        <label for="warehouse">{{ 'userForm.warehouse' | translate }}</label>
                         <select id="warehouse" formControlName="warehouse" class="form-control">
-                            <option selected>Choose...</option>
+                            <option selected>{{ 'userForm.chooseWarehouse' | translate }}</option>
                             <option *ngFor="let Warehouse of warehouses" [value]="Warehouse.warehouseId">
                                 {{Warehouse.location}}</option>
-
                         </select>
                         <div class="invalid-feedback"
                             *ngIf="addUserForm.controls['warehouse'].touched && addUserForm.controls['warehouse'].hasError('required')">
-                            The warehouse should not be empty.
+                            {{ 'userForm.warehouseRequired' | translate }}
                         </div>
                     </div>
                 </div>
 
+                <!-- Buttons -->
                 <button type="button" class="btn btn-primary btn-block" *ngIf="!isEdit" style="margin-top: 20px;"
-                    (click)="saveBtn()">Save</button>
+                    (click)="saveBtn()">{{ 'userForm.save' | translate }}</button>
                 <button type="button" class="btn btn-primary btn-block" *ngIf="isEdit" style="margin-top: 20px;"
-                    (click)="update()">update</button>
+                    (click)="update()">{{ 'userForm.update' | translate }}</button>
+
                 <!-- Error message for overall form validity -->
                 <div *ngIf="showError && !addUserForm.valid" class="text-danger text-center mt-3">
-                    Please fill in all required fields correctly before saving.
+                    {{ 'userForm.formInvalid' | translate }}
                 </div>
             </form>
         </div>

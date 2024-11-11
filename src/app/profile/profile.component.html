@@ -1,7 +1,6 @@
 <section style="background-color: #eee; padding: 30px;">
-
-
     <div class="row">
+        <!-- User Profile -->
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body text-center">
@@ -12,39 +11,45 @@
                 </div>
             </div>
         </div>
+
+        <!-- User Information and Password Change -->
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card-body">
+                    <!-- Full Name -->
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Full Name</p>
+                            <p class="mb-0">{{ 'profile.fullName' | translate }}</p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">{{userInfo.name}}</p>
                         </div>
                     </div>
                     <hr>
+                    <!-- Email -->
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Email</p>
+                            <p class="mb-0">{{ 'profile.email' | translate }}</p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">{{userInfo.email}}</p>
                         </div>
                     </div>
                     <hr>
+                    <!-- Phone -->
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Phone</p>
+                            <p class="mb-0">{{ 'profile.phone' | translate }}</p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">{{userInfo.phoneNumber}}</p>
                         </div>
                     </div>
                     <hr>
+                    <!-- Warehouse ID -->
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="mb-0">Warehouse Id </p>
+                            <p class="mb-0">{{ 'profile.warehouseId' | translate }}</p>
                         </div>
                         <div class="col-sm-9">
                             <p class="text-muted mb-0">{{userInfo.warehouseId}}</p>
@@ -52,56 +57,61 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Change Password -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="card mb-4 mb-md-0">
-
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card mb-4 mb-md-0">
                         <div class="card-body">
-                            <p class="mb-4"> rest <span class="text-primary font-italic me-1">Password</span></p>
+                            <p class="mb-4">{{ 'profile.resetPassword' | translate }} <span
+                                    class="text-primary font-italic me-1">{{ 'profile.password' | translate }}</span>
+                            </p>
 
                             <form [formGroup]="changePasswordForm">
+                                <!-- Old Password -->
                                 <div class="form-group mx-sm-3 mb-2">
-
                                     <input type="password" class="form-control" formControlName="currentPassword"
-                                        id="inputPassword2" placeholder="old Password">
+                                        id="inputPassword2" placeholder="{{ 'profile.oldPassword' | translate }}">
                                 </div>
-
                                 <div class="invalid-feedback form-group mx-sm-3 mb-2"
                                     *ngIf="changePasswordForm.controls['currentPassword'].touched && changePasswordForm.controls['currentPassword'].hasError('required')"
                                     [ngClass]="{ 'active': changePasswordForm.controls['currentPassword'].invalid }">
-                                    Old Password is required.
+                                    {{ 'profile.oldPasswordRequired' | translate }}
                                 </div>
 
+                                <!-- New Password -->
                                 <div class="form-group mx-sm-3 mb-2">
-
                                     <input type="password" class="form-control" id="inputPassword2"
-                                        placeholder="new Password" formControlName="newPassword">
+                                        placeholder="{{ 'profile.newPassword' | translate }}"
+                                        formControlName="newPassword">
                                 </div>
-
                                 <div class="invalid-feedback form-group mx-sm-3 mb-2"
                                     *ngIf="changePasswordForm.controls['newPassword'].touched && changePasswordForm.controls['newPassword'].hasError('required')"
                                     [ngClass]="{ 'active': changePasswordForm.controls['newPassword'].invalid }">
-                                    New Password is required.
+                                    {{ 'profile.newPasswordRequired' | translate }}
                                 </div>
 
-
+                                <!-- Confirm Password -->
                                 <div class="form-group mx-sm-3 mb-2">
                                     <input type="password" class="form-control" id="inputPassword2"
-                                        placeholder="confirm Password" formControlName="confirmPassword">
+                                        placeholder="{{ 'profile.confirmPassword' | translate }}"
+                                        formControlName="confirmPassword">
                                 </div>
                                 <div class="invalid-feedback form-group mx-sm-3 mb-2"
                                     *ngIf="changePasswordForm.controls['confirmPassword'].touched && changePasswordForm.controls['confirmPassword'].hasError('required')"
                                     [ngClass]="{ 'active': changePasswordForm.controls['confirmPassword'].invalid }">
-                                    Confirm Password is required.
+                                    {{ 'profile.confirmPasswordRequired' | translate }}
                                 </div>
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <button type="button" class="btn btn-primary" (click)="changePasswordBtn()">change
-                                        password</button>
 
+                                <!-- Submit Button -->
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <button type="button" class="btn btn-primary" (click)="changePasswordBtn()">
+                                        {{ 'profile.changePassword' | translate }}
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -110,5 +120,4 @@
             </div>
         </div>
     </div>
-
 </section>

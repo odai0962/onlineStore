@@ -6,6 +6,7 @@ import { User } from '../DTOs/UserDTO';
 import { Login } from '../DTOs/loginDTO';
 import { Role } from '../DTOs/RoleDTOs';
 import { environment } from 'src/environments/environment.development';
+import { PasswordDTO } from '../DTOs/passwordDTO';
 
 
 
@@ -48,13 +49,14 @@ export class UsersService {
   searchByName(name: string): Observable<any> {
     return this.client.get(this.baseURl + '/api/Account/searchByName?name=' + name)
   }
-  changePassword(currentPassword: string, newPassword: string, user: User): Observable<any> {
-    const payload = {
-      currentPassword: currentPassword,
-      newPassword: newPassword,
-      user: user
-    };
-    return this.client.put(this.baseURl + '/api/Account/changePassword', payload);
+  changePassword(passwordDTO: PasswordDTO): Observable<any> {
+
+    return this.client.put(this.baseURl + '/api/Account/changePassword', passwordDTO);
+  }
+
+  //dashboard
+  totalUsers(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Account/totalUsers')
   }
 
 }

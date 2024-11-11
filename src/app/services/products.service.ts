@@ -47,4 +47,16 @@ export class ProductsService {
     return this.client.get(this.baseURl + '/api/Product/seachByAce');
   }
 
+  // for dashboard
+  totalProducts(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/totalProducts');
+  }
+  lowerProductStock(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/lowerProductStock');
+  }
+
+  higherProductStock(): Observable<any> {
+    return this.client.get(this.baseURl + '/api/Product/higherProductStock');
+  }
+
 }

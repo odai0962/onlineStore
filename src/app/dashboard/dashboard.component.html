@@ -1,84 +1,146 @@
-<div class="dashboard-container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <h2>Store</h2>
+<!-- app-dashboard.component.html -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height: 80px;">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+            <!-- Avatar -->
+            <div class="dropdown">
+                <span style="color: white; margin-right: 20px; margin-left: 20px;">{{name}}</span>
+                <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                    <img src="{{profilImage}}" class="rounded-circle" height="45" alt="Avatar"
+                        (click)="navigateToProfile()" />
+                </a>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#">Orders</a></li>
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Warehouses</a></li>
-            <li><a href="#">Products</a></li>
-        </ul>
+    </div>
+</nav>
+
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+    <!-- Card for Total Orders -->
+    <div class="card total-orders">
+        <div class="card-header">
+            <h3>{{ 'dashboard.totalOrders' | translate }}</h3>
+        </div>
+        <div class="card-body">
+            <p class="count">{{ totalOrders }}</p>
+        </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="dashboard-header">
-            <h1>Dashboard</h1>
+    <!-- Card for Total Products (Full Width) -->
+    <div class="card total-products">
+        <div class="card-header">
+            <h3>{{ 'dashboard.totalProducts' | translate }}</h3>
         </div>
-
-        <!-- Dashboard Stats Cards -->
-        <div class="stats-cards">
-            <div class="card">
-                <h2>Orders</h2>
-                <p>150 Orders</p>
-            </div>
-            <div class="card">
-                <h2>Users</h2>
-                <p>300 Users</p>
-            </div>
-            <div class="card">
-                <h2>Warehouses</h2>
-                <p>5 Warehouses</p>
-            </div>
-            <div class="card">
-                <h2>Products</h2>
-                <p>500 Products</p>
-            </div>
+        <div class="card-body">
+            <p class="count">{{ totalProducts }}</p>
         </div>
+    </div>
 
-        <!-- Lists Section -->
-        <div class="lists">
-            <div class="list-section">
-                <h3>Recent Orders</h3>
-                <!-- Replace with dynamic order list -->
-                <ul>
-                    <li>Order #1</li>
-                    <li>Order #2</li>
-                    <li>Order #3</li>
-                </ul>
-            </div>
-
-            <div class="list-section">
-                <h3>Users</h3>
-                <!-- Replace with dynamic user list -->
-                <ul>
-                    <li>User #1</li>
-                    <li>User #2</li>
-                    <li>User #3</li>
-                </ul>
-            </div>
-
-            <div class="list-section">
-                <h3>Warehouses</h3>
-                <!-- Replace with dynamic warehouse list -->
-                <ul>
-                    <li>Warehouse #1</li>
-                    <li>Warehouse #2</li>
-                    <li>Warehouse #3</li>
-                </ul>
-            </div>
-
-            <div class="list-section">
-                <h3>Products</h3>
-                <!-- Replace with dynamic product list -->
-                <ul>
-                    <li>Product #1</li>
-                    <li>Product #2</li>
-                    <li>Product #3</li>
-                </ul>
-            </div>
+    <!-- Card for Total Warehouses -->
+    <div class="card total-warehouses">
+        <div class="card-header">
+            <h3>{{ 'dashboard.totalWarehouses' | translate }}</h3>
         </div>
+        <div class="card-body">
+            <p class="count">{{ totalWarehouses }}</p>
+        </div>
+    </div>
+
+    <!-- Card for Total Users -->
+    <div class="card total-users">
+        <div class="card-header">
+            <h3>{{ 'dashboard.totalUsers' | translate }}</h3>
+        </div>
+        <div class="card-body">
+            <p class="count">{{ totalUsers }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Cards for Detailed Orders, Products, and Warehouses -->
+<div class="d-flex p-5 flex-column " style="background-color:#f0f4f8 !important;">
+    <!-- Orders with Highest Total Price -->
+    <div class="card details orders mb-5">
+        <h3>{{ 'dashboard.ordersWithHighestTotalPrice' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'dashboard.orderId' | translate }}</th>
+                    <th>{{ 'dashboard.totalPrice' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of higherTotalPriceOrders">
+                    <td>{{ order.orderId }}</td>
+                    <td>{{ order.totalPrice }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Products with Lowest Stock -->
+    <div class="card details products mb-5">
+        <h3>{{ 'dashboard.productsWithLowestStock' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'dashboard.productName' | translate }}</th>
+                    <th>{{ 'dashboard.stock' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of lowerProductStock">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Products with Highest Stock -->
+    <div class="card details products mb-5">
+        <h3>{{ 'dashboard.productsWithHighestStock' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'dashboard.productName' | translate }}</th>
+                    <th>{{ 'dashboard.stock' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of higherProductStock">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Warehouses with Highest Capacity -->
+    <div class="card details warehouses mb-5">
+        <h3>{{ 'dashboard.warehousesWithHighestCapacity' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'dashboard.warehouseName' | translate }}</th>
+                    <th>{{ 'dashboard.capacity' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let warehouse of higherWarehouseCapacity">
+                    <td>{{ warehouse.location }}</td>
+                    <td>{{ warehouse.capacity }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

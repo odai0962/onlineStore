@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { Login } from '../DTOs/loginDTO';
 import { Role } from '../DTOs/RoleDTOs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ import { Role } from '../DTOs/RoleDTOs';
 export class LoginComponent implements OnInit {
   loginFrom!: FormGroup
   showError: boolean = false;
-  constructor(private formbuilder: FormBuilder, private router: Router, private userService: UsersService) { }
+  @ViewChild('language') language!: ElementRef
+  constructor(private formbuilder: FormBuilder, private router: Router, private userService: UsersService, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.loginFrom = this.formbuilder.group({
@@ -40,10 +42,11 @@ export class LoginComponent implements OnInit {
           this.userService.getUserInfo(login.username).subscribe({
             next: info => {
               localStorage.setItem('userInfo', JSON.stringify(info))
+              this.router.navigate(["home/Dashboard"]);
             },
 
           })
-          this.router.navigate(["home/Dashboard"]);
+
         },
 
       })
@@ -53,6 +56,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
+  changeLanguage() {
+    this.translate.use(this.language.nativeElement.value);
+    if (this.language.nativeElement.value == 'ar') {
+      document.getElementsByTagName('body')[0].dir = 'rtl'
+    } else {
+      document.getElementsByTagName('body')[0].dir = 'ltr'
+    }
+  }
 
 }

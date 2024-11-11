@@ -2,43 +2,54 @@
     <div class="row">
         <div class="d-flex col-4 flex-column flex-shrink-0 p-3 text-white bg-dark"
             style="width: 15%; height: 100; min-height: 100vh;">
+            <!-- Header -->
             <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <svg class="bi me-2" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                 </svg>
-                <span class="fs-4">Store System</span>
+                <span class="fs-4">{{ 'sidebar.storeSystem' | translate }}</span>
             </a>
-            <li class="nav-item">
+
+            <!-- Dashboard Link -->
+            <li class="nav-item x">
                 <a routerLink="/home/Dashboard" routerLinkActive="active-link" class="nav-link" aria-current="page">
                     <svg class="bi me-2" width="16" height="16">
-
                     </svg>
-                    Dashboard
+                    {{ 'sidebar.dashboard' | translate }}
                 </a>
             </li>
+
             <hr>
+
+            <!-- Menu Items -->
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item" *ngFor="let menuItem of filteredMenu">
                     <a [routerLink]="menuItem.path" routerLinkActive="active-link" class="nav-link" aria-current="page">
                         <svg class="bi me-2" width="16" height="16">
-
                         </svg>
-                        {{menuItem.Text}}
+                        {{ menuItem.Text | translate }}
                     </a>
                 </li>
+                <hr>
 
-
+                <!-- Language Selector -->
+                <select name="language" id="language" style="margin-top: 10px;" class="form-select"
+                    (change)="changeLanguage()" #language>
+                    <option value="en">{{ 'login1.englishLanguage' | translate }}</option>
+                    <option value="ar">{{ 'login1.arabicLanguage' | translate }}</option>
+                </select>
 
             </ul>
-            <hr>
+
             <div class="mt-auto">
-                <button class="btn btn-danger w-100" (click)="logout()">Logout</button>
+                <!-- Logout Button -->
+                <button class="btn btn-danger w-100" (click)="logout()">{{ 'sidebar.logout' | translate }}</button>
             </div>
+
         </div>
 
-
-
-        <div class="col-8" style=" width: 85%; padding: 0%;">
+        <!-- Content Area -->
+        <div class="col-8" style="width: 85%; padding: 0%;">
             <router-outlet></router-outlet>
         </div>
     </div>

@@ -21,42 +21,60 @@
 
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                        <span class="h1 fw-bold mb-0" style="color: #333;">Your Logo</span>
+                                        <span class="h1 fw-bold mb-0" style="color: #333;">online store </span>
                                     </div>
 
-                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #555;">Sign into
-                                        your account</h5>
+                                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: #555;">
+                                        {{ 'login.signInToYourAccount' | translate }}
+                                    </h5>
 
+                                    <!-- Username Field -->
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example17">Username</label>
+                                        <label class="form-label" for="form2Example17">{{ 'login.userName' | translate
+                                            }}</label>
                                         <input type="email" id="form2Example17" class="form-control form-control-lg"
                                             formControlName="username" />
                                         <div class="invalid-feedback"
-                                            *ngIf="loginFrom.controls['username'].touched && loginFrom.hasError('required','username')">
-                                            The username should not be empty.
+                                            *ngIf="loginFrom.controls['username'].touched && loginFrom.hasError('required', 'username')">
+                                            {{ 'login.emptyField' | translate }}
                                         </div>
                                     </div>
 
+                                    <!-- Password Field -->
                                     <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27">Password</label>
+                                        <label class="form-label" for="form2Example27">{{ 'login.password' | translate
+                                            }}</label>
                                         <input type="password" id="form2Example27" class="form-control form-control-lg"
                                             formControlName="password" />
                                         <div class="invalid-feedback"
-                                            *ngIf="loginFrom.controls['password'].touched && loginFrom.hasError('required','password')">
-                                            The password should not be empty.
+                                            *ngIf="loginFrom.controls['password'].touched && loginFrom.hasError('required', 'password')">
+                                            {{ 'login.emptyField' | translate }}
                                         </div>
                                     </div>
 
                                 </form>
+
+                                <!-- Language Dropdown -->
+                                <label for="language">{{ 'login.language' | translate }}</label>
+                                <select name="language" id="language" style="margin-top: 10px;" class="form-select"
+                                    (change)="changeLanguage()" #language>
+                                    <option value="en">{{ 'login.EnglishLanguage' | translate }}</option>
+                                    <option value="ar">{{ 'login.ArabicLanguage' | translate }}</option>
+                                </select>
+
+                                <!-- Login Button -->
                                 <div class="pt-1 mb-4">
                                     <button class="btn btn-dark btn-lg btn-block" type="button" (click)="loginBtn()"
                                         style="border-radius: 50px;">
-                                        Login
+                                        {{ 'login.loginBtn' | translate }}
                                     </button>
                                 </div>
+
+                                <!-- Error Message -->
                                 <div *ngIf="showError && !loginFrom.valid" class="text-danger">
-                                    Please fill in all required fields correctly before saving.
+                                    {{ 'login.fillFieldsCorrectly' | translate }}
                                 </div>
+
                             </div>
                         </div>
                     </div>

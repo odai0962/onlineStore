@@ -20,86 +20,74 @@
 
         <!-- Right elements -->
         <div class="d-flex align-items-center">
-            <!-- Icon -->
-
-
-
             <!-- Avatar -->
             <div class="dropdown">
                 <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                     <img src="{{profilImage}}" class="rounded-circle" height="45"
                         alt="Black and White Portrait of a Man" loading="lazy" (click)="navigateToProfile()" />
                 </a>
-
             </div>
         </div>
-
     </div>
-
 </nav>
 <!-- Navbar -->
 
 <div>
-    <h3>Order management</h3>
+    <h3>{{ 'orderManagement.orderManagement' | translate }}</h3>
 </div>
-
 
 <nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
     <div class="container-fluid">
-        <a class="navbar-brand">Order</a>
+        <a class="navbar-brand">{{ 'orderManagement.order' | translate }}</a>
 
         <div class="form-group col-md-4" style="width: 180px;">
-            <label for="order-state" class="text-muted mb-2">Order State</label>
+            <label for="order-state" class="text-muted mb-2">{{ 'orderManagement.orderState' | translate }}</label>
             <select id="order-state" class="form-control bg-light" [(ngModel)]="selectedOrderState"
                 (ngModelChange)="searchByStatus()">
-                <option value="" selected>none</option>
-                <option value="Pending">Pending</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Cancelled">Cancelled</option>
+                <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
+                <option value="Pending">{{ 'orderManagement.pending' | translate }}</option>
+                <option value="Delivered">{{ 'orderManagement.delivered' | translate }}</option>
+                <option value="Cancelled">{{ 'orderManagement.cancelled' | translate }}</option>
             </select>
         </div>
 
         <div class="form-group col-md-4" style="width: 180px;">
-            <label for="order-state" class="text-muted mb-2">Pyment Method</label>
+            <label for="order-state" class="text-muted mb-2">{{ 'orderManagement.paymentMethod' | translate }}</label>
             <select id="order-state" class="form-control bg-light" [(ngModel)]="selectedpymentMethod"
                 (ngModelChange)="searchByPymentMethod()">
-                <option value="" selected>none</option>
-                <option value="Cash">Cash</option>
-                <option value="Credit-Card">Credit Card</option>
-                <option value="Paypal">PayPal</option>
+                <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
+                <option value="Cash">{{ 'orderManagement.cash' | translate }}</option>
+                <option value="Credit-Card">{{ 'orderManagement.creditCard' | translate }}</option>
+                <option value="Paypal">{{ 'orderManagement.paypal' | translate }}</option>
             </select>
         </div>
+
         <form class="d-flex" role="search">
-            <input type="search" class="form-control rounded" placeholder="Sreach By location" aria-label="Search"
+            <input type="search" class="form-control rounded"
+                placeholder="{{ 'orderManagement.searchByLocation' | translate }}" aria-label="Search"
                 aria-describedby="search-addon" #searchText />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init
-                (click)="search()">search</button>
+            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">{{
+                'buttons2.search' | translate }}</button>
 
             <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 180px;"
-                (click)="newOrder()">Create New</button>
+                (click)="newOrder()">{{ 'buttons2.createNew' | translate }}</button>
         </form>
     </div>
-
-
-
 </nav>
 
-
-
-<table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
+<table class="table table-hover align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
     <thead class="bg-light">
         <tr>
-            <th>ID</th>
-            <th>product Name</th>
-            <th>date</th>
-            <th>status</th>
-            <th>total price </th>
-            <th>payment methods</th>
-            <th>customer Name</th>
-            <th>address</th>
-            <th>quantity</th>
-            <th>Actions</th>
-
+            <th>{{ 'orderManagement.id' | translate }}</th>
+            <th>{{ 'orderManagement.productName' | translate }}</th>
+            <th>{{ 'orderManagement.date' | translate }}</th>
+            <th>{{ 'orderManagement.status' | translate }}</th>
+            <th>{{ 'orderManagement.totalPrice' | translate }}</th>
+            <th>{{ 'orderManagement.paymentMethods' | translate }}</th>
+            <th>{{ 'orderManagement.customerName' | translate }}</th>
+            <th>{{ 'orderManagement.address' | translate }}</th>
+            <th>{{ 'orderManagement.quantity' | translate }}</th>
+            <th>{{ 'orderManagement.actions' | translate }}</th>
         </tr>
     </thead>
     <tbody>
@@ -112,31 +100,25 @@
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.orderDate | date:'shortDate'}}</p>
-
             </td>
             <td>
                 <p class="fw-normal mb-1" [ngClass]="{'text-danger': order.orderStatus === 'Cancelled'}">
                     {{order.orderStatus}}</p>
-
             </td>
             <td>
-                <p class="fw-normal mb-1">{{order.totalPrice}}jd</p>
+                <p class="fw-normal mb-1">{{order.totalPrice}} JD</p>
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.paymentmethods}}</p>
-
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.customerName}}</p>
-
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.shippingAddress}}</p>
-
             </td>
             <td>
                 <p class="fw-normal mb-1">{{order.quantity}}</p>
-
             </td>
             <td>
                 <div class="btn-group">
@@ -148,11 +130,12 @@
                     <div class="dropdown-menu">
 
                         <a class="dropdown-item" (click)="edit(order.orderId)">
-                            <i class="fas fa-edit"></i> Edit
+                            <i class="fas fa-edit"></i> {{ 'orderManagement.edit' | translate }}
                         </a>
 
                         <a class="dropdown-item" (click)="deleteOrder(order.orderId)">
-                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> Delete
+                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> {{ 'orderManagement.delete' |
+                            translate }}
                         </a>
                     </div>
 

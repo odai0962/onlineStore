@@ -15,91 +15,81 @@
         </div>
 
         <div class="d-flex align-items-center">
-
-
             <!-- Avatar -->
             <div class="dropdown">
                 <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
-                    <img src="{{profilImage}}" class="rounded-circle" height="45"
-                        alt="Black and White Portrait of a Man" loading="lazy" (click)="navigateToProfile()" />
+                    <img src="{{ profilImage }}" class="rounded-circle" height="45"
+                        alt="{{ 'navbar2.avatarAltText' | translate }}" loading="lazy" (click)="navigateToProfile()" />
                 </a>
-
-
             </div>
         </div>
-        <!-- Right elements -->
     </div>
     <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
 
 <div style="margin-left: 40px; margin-top: 30px;">
-    <h3>Warehouse management</h3>
+    <h3>{{ 'warehouseManagement.title' | translate }}</h3>
 </div>
 
-
+<!-- Search Section -->
 <nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
     <div class="container-fluid">
-        <a class="navbar-brand">Warehouse</a>
+        <a class="navbar-brand">{{ 'warehouseManagement.navbarBrand' | translate }}</a>
 
         <div class="form-group col-md-4" style="width: 150px;">
-            <label for="status">Status</label>
+            <label for="status">{{ 'warehouseManagement.statusLabel' | translate }}</label>
             <select id="status" class="form-control" [(ngModel)]="selectedStatus" (ngModelChange)="searchByStatus()">
-                <!-- <option selected [value]=null>Choose...</option> -->
-                <option [value]=true>Active</option>
-                <option [value]=false>Inactive</option>
+                <option [value]=true>{{ 'warehouseManagement.active' | translate }}</option>
+                <option [value]=false>{{ 'warehouseManagement.inactive' | translate }}</option>
             </select>
         </div>
+
         <form class="d-flex" role="search">
-            <input type="search" class="form-control rounded" placeholder="Search By location" aria-label="Search"
+            <input type="search" class="form-control rounded"
+                placeholder="{{ 'warehouseManagement.searchPlaceholder' | translate }}" aria-label="Search"
                 aria-describedby="search-addon" #searchText />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">search
+            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">
+                {{ 'warehouseManagement.searchButton' | translate }}
             </button>
 
             <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 180px;"
-                (click)="newWarehouse()">Create New</button>
+                (click)="newWarehouse()">
+                {{ 'warehouseManagement.createNewButton' | translate }}
+            </button>
         </form>
     </div>
-
-
-
 </nav>
 
-
-
-<table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
+<!-- Table Section -->
+<table class="table align-middle table-hover mt-3 bg-white mx-auto" style="width: 90%; ">
     <thead class="bg-light">
         <tr>
-            <th>ID</th>
-            <th>manager</th>
-            <th>location</th>
-            <th>capacity</th>
-            <th>status</th>
-            <th>Actions</th>
-
+            <th>{{ 'warehouseManagement.table.id' | translate }}</th>
+            <th>{{ 'warehouseManagement.table.manager' | translate }}</th>
+            <th>{{ 'warehouseManagement.table.location' | translate }}</th>
+            <th>{{ 'warehouseManagement.table.capacity' | translate }}</th>
+            <th>{{ 'warehouseManagement.table.status' | translate }}</th>
+            <th>{{ 'warehouseManagement.table.actions' | translate }}</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let Warehouse of warehouses">
             <td>
-                <p class="fw-normal mb-1">{{Warehouse.warehouseId}}</p>
+                <p class="fw-normal mb-1">{{ Warehouse.warehouseId }}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">{{Warehouse.manager}}</p>
-
+                <p class="fw-normal mb-1">{{ Warehouse.manager }}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">{{Warehouse.location}}</p>
-
+                <p class="fw-normal mb-1">{{ Warehouse.location }}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">{{Warehouse.capacity}}</p>
-
-
+                <p class="fw-normal mb-1">{{ Warehouse.capacity }}</p>
             </td>
             <td>
-                <p class="fw-normal mb-1">{{ Warehouse.status ? 'Active' : 'Inactive' }}</p>
-
+                <p class="fw-normal mb-1">{{ Warehouse.status ? ('warehouseManagement.active' | translate) :
+                    ('warehouseManagement.inactive' | translate) }}</p>
             </td>
 
             <td>
@@ -110,18 +100,16 @@
                     </button>
 
                     <div class="dropdown-menu">
-
                         <a class="dropdown-item" (click)="edit(Warehouse.warehouseId)">
-                            <i class="fas fa-edit"></i> Edit
+                            <i class="fas fa-edit"></i> {{ 'warehouseManagement.edit' | translate }}
                         </a>
 
                         <a class="dropdown-item" (click)="deleteWarehouse(Warehouse.warehouseId)">
-                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> Delete
+                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> {{ 'warehouseManagement.delete' |
+                            translate }}
                         </a>
                     </div>
-
                 </div>
-
             </td>
         </tr>
     </tbody>

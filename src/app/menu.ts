@@ -1,9 +1,8 @@
 
 
 export const Menu = [
-
-    { Text: 'Products', path: '/home/productsList', role: ['Admin'] },
-    { Text: 'Orders', path: '/home/orderList', role: ['Admin'] },
-    { Text: 'Warehouse', path: '/home/warehouseList', role: ['Admin'] },
-    { Text: 'Users', path: '/home/userList', role: ['Admin'] }
-]
+    { Text: 'menu.products', path: '/home/productsList', role: ['Admin'] },
+    { Text: 'menu.orders', path: '/home/orderList', role: ['Admin'] },
+    { Text: 'menu.warehouse', path: '/home/warehouseList', role: ['Admin'] },
+    { Text: 'menu.users', path: '/home/userList', role: ['Admin'] }
+];
