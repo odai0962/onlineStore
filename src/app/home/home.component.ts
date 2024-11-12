@@ -14,10 +14,8 @@ export class HomeComponent {
   roles!: string;
   @ViewChild('language') language!: ElementRef
   constructor(private router: Router, private translate: TranslateService) {
-    this.liMenu = Menu; // Directly assigning Menu array
+    this.liMenu = Menu;
     this.roles = JSON.parse(JSON.stringify(localStorage.getItem('userRole')));
-
-    // Iterate over the liMenu (which is the Menu array)
     this.liMenu.forEach((element: any) => {
       const isInRole = element.role.find((x: any) => x === this.roles);
       if (isInRole !== undefined) {
