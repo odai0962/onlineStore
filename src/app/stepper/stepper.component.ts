@@ -26,11 +26,24 @@ export class StepperComponent implements OnInit {
   order!: Order
   stock!: number
   quantity!: number
+  warehouseId!: number
   @ViewChild('searchText') name!: ElementRef
   step: number = 1;  // Keeps track of the current step
-  constructor(private service: ProductsService, private activatedRoute: ActivatedRoute, private ordersService: OrdersService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private service: ProductsService, private activatedRoute: ActivatedRoute,
+    private ordersService: OrdersService, private formBuilder: FormBuilder, private router: Router) {
+
+    var info = localStorage.getItem('userInfo');
+    if (info) {
+
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId
+      this.warehouseId = warehouseId
+    } else {
+      console.log('No user info found in localStorage');
+    }
+  }
   ngOnInit(): void {
-    this.reloadProducts()
+    this.loadAllProductByWarehouseId()
     this.addOrderForm = this.formBuilder.group({
       customerName: ['', Validators.required],
       shippingAddress: ['', Validators.required],
@@ -167,10 +180,20 @@ export class StepperComponent implements OnInit {
     });
 
   }
-  reloadProducts() {
-    this.service.loadAllProductsUpperThanZero().subscribe({
+  // reloadProducts() {
+  //   this.service.loadAllProductsUpperThanZero().subscribe({
+  //     next: data => {
+  //       this.products = data
+  //     },
+  //   });
+  // }
+  loadAllProductByWarehouseId() {
+
+    this.service.loadAllProductByWarehouseIdUpperThanZero(this.warehouseId).subscribe({
       next: data => {
+
         this.products = data
+
       },
     });
   }
@@ -178,9 +201,9 @@ export class StepperComponent implements OnInit {
 
     if (this.name.nativeElement.value.length == 0) {
       console.log("not found")
-      this.reloadProducts()
+      this.loadAllProductByWarehouseId()
     } else {
-      this.service.searchByName(this.name.nativeElement.value).subscribe({
+      this.service.searchByName(this.name.nativeElement.value, this.warehouseId).subscribe({
         next: data => {
           if (data.length == 0) {
             console.log("not found")
@@ -191,7 +214,7 @@ export class StepperComponent implements OnInit {
 
         },
         error: e => {
-          this.reloadProducts()
+          this.loadAllProductByWarehouseId()
 
         }
       })

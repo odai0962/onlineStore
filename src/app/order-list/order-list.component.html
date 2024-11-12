@@ -36,44 +36,51 @@
     <h3>{{ 'orderManagement.orderManagement' | translate }}</h3>
 </div>
 
-<nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
+<nav class="navbar navbar-light bg-light shadow-sm mx-auto" style="margin-top: 30px; width: 90%; padding: 20px;">
     <div class="container-fluid">
-        <a class="navbar-brand">{{ 'orderManagement.order' | translate }}</a>
 
-        <div class="form-group col-md-4" style="width: 180px;">
-            <label for="order-state" class="text-muted mb-2">{{ 'orderManagement.orderState' | translate }}</label>
-            <select id="order-state" class="form-control bg-light" [(ngModel)]="selectedOrderState"
-                (ngModelChange)="searchByStatus()">
-                <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
-                <option value="Pending">{{ 'orderManagement.pending' | translate }}</option>
-                <option value="Delivered">{{ 'orderManagement.delivered' | translate }}</option>
-                <option value="Cancelled">{{ 'orderManagement.cancelled' | translate }}</option>
-            </select>
+
+        <div class="d-flex justify-content-between w-100">
+            <!-- Order State Filter -->
+            <div class="form-group" style="width: 250px;">
+                <label for="order-state" class="text-muted">{{ 'orderManagement.orderState' | translate }}</label>
+                <select id="order-state" class="form-select bg-light" [(ngModel)]="selectedOrderState"
+                    (ngModelChange)="searchByStatus()">
+                    <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
+                    <option value="Pending">{{ 'orderManagement.pending' | translate }}</option>
+                    <option value="Delivered">{{ 'orderManagement.delivered' | translate }}</option>
+                    <option value="Cancelled">{{ 'orderManagement.cancelled' | translate }}</option>
+                </select>
+            </div>
+
+            <!-- Payment Method Filter -->
+            <div class="form-group" style="width: 250px;">
+                <label for="payment-method" class="text-muted">{{ 'orderManagement.paymentMethod' | translate }}</label>
+                <select id="payment-method" class="form-select bg-light" [(ngModel)]="selectedpymentMethod"
+                    (ngModelChange)="searchByPymentMethod()">
+                    <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
+                    <option value="Cash">{{ 'orderManagement.cash' | translate }}</option>
+                    <option value="Credit-Card">{{ 'orderManagement.creditCard' | translate }}</option>
+                    <option value="Paypal">{{ 'orderManagement.paypal' | translate }}</option>
+                </select>
+            </div>
+
+            <!-- Search Form -->
+            <form class="d-flex" role="search">
+                <input type="search" class="form-control"
+                    placeholder="{{ 'orderManagement.searchByLocation' | translate }}" aria-label="Search"
+                    #searchText />
+                <button type="button" class="btn btn-outline-primary ms-2" (click)="search()">
+                    {{ 'buttons2.search' | translate }}
+                </button>
+                <button type="button" class="btn btn-success ms-3" style="width: 180px;" (click)="newOrder()">
+                    {{ 'buttons2.createNew' | translate }}
+                </button>
+            </form>
         </div>
-
-        <div class="form-group col-md-4" style="width: 180px;">
-            <label for="order-state" class="text-muted mb-2">{{ 'orderManagement.paymentMethod' | translate }}</label>
-            <select id="order-state" class="form-control bg-light" [(ngModel)]="selectedpymentMethod"
-                (ngModelChange)="searchByPymentMethod()">
-                <option value="" selected>{{ 'orderManagement.none' | translate }}</option>
-                <option value="Cash">{{ 'orderManagement.cash' | translate }}</option>
-                <option value="Credit-Card">{{ 'orderManagement.creditCard' | translate }}</option>
-                <option value="Paypal">{{ 'orderManagement.paypal' | translate }}</option>
-            </select>
-        </div>
-
-        <form class="d-flex" role="search">
-            <input type="search" class="form-control rounded"
-                placeholder="{{ 'orderManagement.searchByLocation' | translate }}" aria-label="Search"
-                aria-describedby="search-addon" #searchText />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">{{
-                'buttons2.search' | translate }}</button>
-
-            <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 180px;"
-                (click)="newOrder()">{{ 'buttons2.createNew' | translate }}</button>
-        </form>
     </div>
 </nav>
+
 
 <table class="table table-hover align-middle mt-3 bg-white mx-auto" style="width: 90%; ">
     <thead class="bg-light">

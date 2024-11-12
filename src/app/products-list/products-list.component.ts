@@ -14,15 +14,18 @@ export class ProductsListComponent implements OnInit {
   profilImage!: any
   minPrice: number = 0;
   maxPrice: number = 1000;
-
+  warehouseId!: number
   @ViewChild('searchText') name!: ElementRef
   constructor(private router: Router, private service: ProductsService) {
     var info = localStorage.getItem('userInfo');
 
     if (info) {
+
       var parsedInfo = JSON.parse(info);
       var profilImage = parsedInfo.profileImage;
       this.profilImage = profilImage
+      var warehouseId = parsedInfo.warehouseId
+      this.warehouseId = warehouseId
     } else {
       console.log('No user info found in localStorage');
     }
@@ -31,7 +34,8 @@ export class ProductsListComponent implements OnInit {
     this.router.navigate(['home/newProduct'])
   }
   ngOnInit(): void {
-    this.reloadProducts()
+    this.loadAllProductByWarehouseId()
+    console.log(this.loadAllProductByWarehouseId())
   }
 
   edit(Id: number) {
@@ -41,13 +45,13 @@ export class ProductsListComponent implements OnInit {
   search() {
 
     if (this.name.nativeElement.value.length == 0) {
-      this.reloadProducts()
+      this.loadAllProductByWarehouseId()
     } else {
-      this.service.searchByName(this.name.nativeElement.value).subscribe({
+      this.service.searchByName(this.name.nativeElement.value, this.warehouseId).subscribe({
         next: data => {
           if (data.length == 0) {
             Swal.fire("no data found!");
-            this.reloadProducts()
+            this.loadAllProductByWarehouseId()
 
           } else {
             this.products = data
@@ -55,7 +59,7 @@ export class ProductsListComponent implements OnInit {
 
         },
         error: e => {
-          this.reloadProducts()
+          this.loadAllProductByWarehouseId()
         }
       })
 
@@ -63,9 +67,20 @@ export class ProductsListComponent implements OnInit {
 
   }
 
-  reloadProducts() {
-    this.service.loadAllProducts().subscribe({
+  // reloadProducts() {
+  //   this.service.loadAllProducts().subscribe({
+  //     next: data => {
+  //       this.products = data
+
+  //     },
+  //   });
+  // }
+
+  loadAllProductByWarehouseId() {
+
+    this.service.loadAllProductByWarehouseId(this.warehouseId).subscribe({
       next: data => {
+
         this.products = data
 
       },
@@ -91,7 +106,7 @@ export class ProductsListComponent implements OnInit {
               text: "Your product has been deleted.",
               icon: "success"
             });
-            this.reloadProducts()
+            this.loadAllProductByWarehouseId()
           },
 
         })
@@ -102,7 +117,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   seachByPriceAvarge() {
-    this.service.seachByPriceAvarge(this.minPrice, this.maxPrice).subscribe({
+    this.service.seachByPriceAvarge(this.minPrice, this.maxPrice, this.warehouseId).subscribe({
       next: data => {
         this.products = data
       }
@@ -119,7 +134,7 @@ export class ProductsListComponent implements OnInit {
   }
   seachByDec() {
 
-    this.service.seachByDec().subscribe({
+    this.service.seachByDec(this.warehouseId).subscribe({
       next: data => {
 
         this.products = data
@@ -128,7 +143,7 @@ export class ProductsListComponent implements OnInit {
   }
   seachByAce() {
 
-    this.service.seachByAce().subscribe({
+    this.service.seachByAce(this.warehouseId).subscribe({
       next: data => {
         this.products = data
       }

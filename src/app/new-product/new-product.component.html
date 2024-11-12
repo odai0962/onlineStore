@@ -86,21 +86,7 @@
             </div>
         </div>
 
-        <!-- Warehouse -->
-        <div class="form-group">
-            <label for="warehouse">{{ 'productForm.warehouse' | translate }}</label>
-            <select id="warehouse" formControlName="warehouse" class="form-control">
-                <option selected>{{ 'productForm.chooseWarehouse' | translate }}</option>
-                <option *ngFor="let Warehouse of warehouses" [value]="Warehouse.warehouseId">
-                    {{ Warehouse.location }}
-                </option>
-            </select>
-            <div class="invalid-feedback"
-                *ngIf="addProductForm.controls['warehouse'].touched && addProductForm.controls['warehouse'].hasError('required')"
-                [ngClass]="{ 'active': addProductForm.controls['warehouse'].invalid }">
-                {{ 'productForm.warehouseRequired' | translate }}
-            </div>
-        </div>
+
 
         <!-- Save/Update Buttons -->
         <button type="button" class="btn-primary" *ngIf="!isEdit" (click)="saveBtn()">{{ 'buttons.save' | translate

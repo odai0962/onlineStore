@@ -61,7 +61,7 @@ export class NewUserComponent implements OnInit {
 
   }
   update() {
-    debugger
+
     this.showError = true;
     this.addUserForm.get('password')?.disable();
     if (this.addUserForm.valid) {
@@ -103,7 +103,7 @@ export class NewUserComponent implements OnInit {
     }
   }
   onFileChange(file: any) {
-    debugger
+
     let reader = new FileReader();
     reader.readAsDataURL(file.target.files[0]);
     reader.onload = (_file) => {

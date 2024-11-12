@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height: 80px;">
     <div class="container-fluid">
         <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="'navbar.toggleNavigation' | translate ">
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
@@ -10,7 +9,7 @@
             <div class="dropdown">
                 <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
                     <img src="{{ profilImage }}" class="rounded-circle" height="45"
-                        alt="{{ 'navbar.profileImageAlt' | translate }}" loading="lazy" (click)="navigateToProfile()" />
+                        alt="Black and White Portrait of a Man" loading="lazy" />
                 </a>
             </div>
         </div>
@@ -19,72 +18,73 @@
 
 <!-- Price Range Section -->
 <div style="margin-left: 40px; margin-top: 30px;">
-    <h3>{{ 'productList.productsManagement' | translate }}</h3>
+    <h3>Products Management</h3>
 </div>
 
-<nav class="navbar bg-body-tertiary mx-auto" style="margin-top: 50px; width: 90%;">
+<nav class="navbar navbar-light mx-auto" style="width: 90%; margin-top: 40px;">
     <div class="container-fluid">
         <a class="navbar-brand">{{ 'productList.products' | translate }}</a>
 
-        <div
-            style="border: 1px solid lightgray; width: 400px; display: flex; justify-content: center; align-items: center; border-radius: 10px; padding: 10px;">
-            <div class="form-group col-md-4" style="width: 200px;">
-                <!-- Min Price Slider -->
-                <label for="minPrice" class="slider-label">{{ 'productList.minPrice' | translate }}: ${{ minPrice
+        <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
+            <!-- Price Range Filter -->
+            <div class="d-flex flex-column align-items-start" style="width: 60%;">
+                <label for="minPrice" class="form-label">{{ 'productList.minPrice' | translate }}: ${{ minPrice
                     }}</label>
-                <input type="range" id="minPrice" min="0" max="1000" [(ngModel)]="minPrice" class="slider" step="10">
-
-                <!-- Max Price Slider -->
-                <label for="maxPrice" class="slider-label">{{ 'productList.maxPrice' | translate }}: ${{ maxPrice
+                <input type="range" id="minPrice" min="0" max="1000" [(ngModel)]="minPrice" class="form-range"
+                    step="10">
+                <label for="maxPrice" class="form-label mt-3">{{ 'productList.maxPrice' | translate }}: ${{ maxPrice
                     }}</label>
-                <input type="range" id="maxPrice" min="0" max="1000" [(ngModel)]="maxPrice" class="slider" step="10">
-            </div>
+                <input type="range" id="maxPrice" min="0" max="1000" [(ngModel)]="maxPrice" class="form-range"
+                    step="10">
 
-            <div class="form-group col-md-4" style="width: 100px; margin-left: 20px;">
-                <button (click)="seachByPriceAvarge()" class="btn btn-primary"> {{'buttons1.search' | translate}}
+                <!-- Search Button for Sliders below the Price Range -->
+                <button (click)="seachByPriceAvarge()" class="btn btn-success mt-3 w-100">
+                    {{ 'buttons1.search' | translate }}
                 </button>
             </div>
-        </div>
 
-        <!-- Order By Dropdown -->
-        <div class="form-group col-md-4" style="width: 150px;">
-            <select id="orderBy" class="form-control" (change)="onOrderByChange($event)">
-                <option selected disabled>{{ 'filters.orderBy' | translate }}</option>
-                <option value="ascending">{{ 'filters.ascending' | translate }}</option>
-                <option value="descending">{{ 'filters.descending' | translate }}</option>
-            </select>
-        </div>
+            <!-- Search Form & Order By Dropdown -->
+            <div class="d-flex flex-column align-items-center" style="width: 35%;">
+                <!-- Order By Dropdown -->
+                <select id="orderBy" class="form-select mb-3" (change)="onOrderByChange($event)">
+                    <option selected disabled>{{ 'filters.orderBy' | translate }}</option>
+                    <option value="ascending">{{ 'filters.ascending' | translate }}</option>
+                    <option value="descending">{{ 'filters.descending' | translate }}</option>
+                </select>
 
-        <!-- Search Form -->
-        <form class="d-flex" role="search">
-            <input type="search" class="form-control rounded" placeholder="{{ 'productList.searchByName' | translate }}"
-                aria-label="Search" aria-describedby="search-addon" #searchText />
-            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init (click)="search()">{{
-                'buttons1.search' | translate }}</button>
-            <button type="button" class="btn btn-primary" style="margin-left: 35px; width: 160px;"
-                (click)="newProduct()">{{ 'buttons1.addNew' | translate }}</button>
-        </form>
+                <!-- Main Search Form -->
+                <form class="d-flex w-100" role="search">
+                    <input type="search" class="form-control" placeholder="{{ 'productList.searchByName' | translate }}"
+                        aria-label="Search" aria-describedby="search-addon" #searchText />
+                    <button type="button" class="btn btn-outline-primary" (click)="search()">
+                        {{ 'buttons1.search' | translate }}
+                    </button>
+                    <button type="button" class="btn btn-primary ms-3" style="width: 160px;" (click)="newProduct()">
+                        {{ 'buttons1.addNew' | translate }}
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </nav>
-
 <!-- Product Table -->
-<table class="table table-hover align-middle mt-3 bg-white mx-auto" style="width: 90%; table-layout: fixed;">
+<table class="table align-middle mt-3 bg-white mx-auto" style="width: 90%; table-layout: fixed;">
     <thead class="bg-light">
         <tr>
-            <th style="width: 20%;">{{ 'table.product' | translate }}</th>
-            <th style="width: 30%;">{{ 'table.description' | translate }}</th>
-            <th style="width: 15%;">{{ 'table.sku' | translate }}</th>
-            <th style="width: 10%;">{{ 'table.stock' | translate }}</th>
-            <th style="width: 10%;">{{ 'table.price' | translate }}</th>
-            <th style="width: 15%;">{{ 'table.actions' | translate }}</th>
+            <th style="width: 20%;">Product</th>
+            <th style="width: 30%;">Description</th>
+            <th style="width: 15%;">SKU</th>
+            <th style="width: 10%;">Stock</th>
+            <th style="width: 10%;">Price</th>
+            <th style="width: 15%;">Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let product of products">
             <td>
                 <div class="d-flex align-items-center">
-                    <img src="{{ product.image == '' ? '../../assets/noImage.jpg' : product.image }}"
-                        alt="Product image" style="width: 80px; height: 80px;" class="rounded" />
+                    <img src="{{ product.image == '' ? '../../assets/noImage.jpg' : product.image }}" alt=""
+                        style="width: 80px; height: 80px;" class="rounded" />
                     <div class="ms-3">
                         <p class="fw-bold mb-1">{{ product.name }}</p>
                     </div>
@@ -98,10 +98,10 @@
             </td>
             <td>
                 <p class="fw-normal mb-1">{{ product.stock }}</p>
-                <span *ngIf="product.stock <= 0" class="badge bg-danger">{{ 'table.outOfStock' | translate }}</span>
+                <span *ngIf="product.stock <= 0" class="badge bg-danger">Out of Stock</span>
             </td>
             <td>
-                <p class="fw-normal mb-1">{{ product.price }} {{ 'currency.jd' | translate }}</p>
+                <p class="fw-normal mb-1">{{ product.price }} jd</p>
             </td>
             <td>
                 <div class="btn-group">
@@ -110,10 +110,9 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item"><i class="fas fa-edit" (click)="edit(product.productId)"></i> {{
-                            'actions.edit' | translate }}</a>
+                        <a class="dropdown-item"><i class="fas fa-edit" (click)="edit(product.productId)"></i> Edit</a>
                         <a class="dropdown-item" (click)="deleteProduct(product.productId)">
-                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> {{ 'actions.delete' | translate }}
+                            <i class="fa-solid fa-trash" style="color: #ff0000;"></i> Delete
                         </a>
                     </div>
                 </div>

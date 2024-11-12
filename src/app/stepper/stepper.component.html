@@ -4,19 +4,19 @@
             <div class="step" icon="fa fa-pencil-alt" [ngClass]="{'active': step === 1}">
                 <div class="step-title">
                     <span class="step-number">01</span>
-                    <span>{{ 'stepper.step1' | translate }}</span>
+
                 </div>
             </div>
             <div class="step" icon="fa fa-info-circle" [ngClass]="{'active': step === 2}">
                 <div class="step-title">
                     <span class="step-number">02</span>
-                    <span>{{ 'stepper.step2' | translate }}</span>
+
                 </div>
             </div>
             <div class="step" icon="fa fa-book-reader" [ngClass]="{'active': step === 3}">
                 <div class="step-title">
                     <span class="step-number">03</span>
-                    <span>{{ 'stepper.step3' | translate }}</span>
+
                 </div>
             </div>
         </div>
@@ -59,8 +59,8 @@
                                 [class.selected]="selectedRow === product.productId">
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="https://th.bing.com/th/id/OIP.UjpA1BW8S5bIPu9n7oWGBgHaF7?rs=1&pid=ImgDetMain"
-                                            alt="" style="width: 80px; height: 80px;" class="rounded" />
+                                        <img src="{{product.image}}" alt="" style="width: 80px; height: 80px;"
+                                            class="rounded" />
                                         <div class="ms-3">
                                             <p class="fw-bold mb-1">{{ product.name }}</p>
                                         </div>

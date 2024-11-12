@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10"
-            style="border: 1px solid #ccc; border-radius: 15px; padding: 40px; background-color: #f9f9f9;">
+            style="background-color: #fff; border-radius: 20px; padding: 40px 60px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
 
             <h2 class="text-center mb-4" *ngIf="!isEdit">{{ 'warehouseForm.addTitle' | translate }}</h2>
             <h2 class="text-center mb-4" *ngIf="isEdit">{{ 'warehouseForm.updateTitle' | translate }}</h2>
@@ -10,7 +10,7 @@
                 <div class="form-row">
                     <!-- Manager Name -->
                     <div class="form-group col-md-6">
-                        <label for="manager">{{ 'warehouseForm.managerLabel' | translate }}</label>
+                        <label for="manager" class="form-label">{{ 'warehouseForm.managerLabel' | translate }}</label>
                         <input type="text" class="form-control" formControlName="manager" id="manager"
                             placeholder="{{ 'warehouseForm.managerPlaceholder' | translate }}">
                         <div class="invalid-feedback"
@@ -25,7 +25,7 @@
 
                     <!-- Location -->
                     <div class="form-group col-md-6">
-                        <label for="location">{{ 'warehouseForm.locationLabel' | translate }}</label>
+                        <label for="location" class="form-label">{{ 'warehouseForm.locationLabel' | translate }}</label>
                         <input type="text" class="form-control" formControlName="location" id="location"
                             placeholder="{{ 'warehouseForm.locationPlaceholder' | translate }}">
                         <div class="invalid-feedback"
@@ -40,7 +40,7 @@
 
                     <!-- Capacity -->
                     <div class="form-group col-md-6">
-                        <label for="capacity">{{ 'warehouseForm.capacityLabel' | translate }}</label>
+                        <label for="capacity" class="form-label">{{ 'warehouseForm.capacityLabel' | translate }}</label>
                         <input type="text" class="form-control" formControlName="capacity" id="capacity"
                             placeholder="{{ 'warehouseForm.capacityPlaceholder' | translate }}">
                         <div class="invalid-feedback"
@@ -51,11 +51,11 @@
 
                     <!-- Status -->
                     <div class="form-group col-md-4">
-                        <label for="status">{{ 'warehouseForm.statusLabel' | translate }}</label>
+                        <label for="status" class="form-label">{{ 'warehouseForm.statusLabel' | translate }}</label>
                         <select id="status" formControlName="status" class="form-control">
                             <option selected>{{ 'warehouseForm.chooseStatus' | translate }}</option>
-                            <option [value]=true>{{ 'warehouseForm.active' | translate }}</option>
-                            <option [value]=false>{{ 'warehouseForm.inactive' | translate }}</option>
+                            <option [value]="true">{{ 'warehouseForm.active' | translate }}</option>
+                            <option [value]="false">{{ 'warehouseForm.inactive' | translate }}</option>
                         </select>
                         <div class="invalid-feedback"
                             *ngIf="addWarehouseForm.controls['status'].touched && addWarehouseForm.controls['status'].hasError('required')">
@@ -68,11 +68,15 @@
                     <input hidden formControlName="Id" class="position-absolute search-icon">
                 </div>
 
-                <button type="button" *ngIf="!isEdit" class="btn btn-primary btn-block" style="margin-top: 20px;"
-                    (click)="saveBtn()">{{ 'warehouseForm.saveButton' | translate }}</button>
+                <button type="button" *ngIf="!isEdit" class="btn btn-lg btn-gradient-primary btn-block"
+                    style="margin-top: 20px;" (click)="saveBtn()">
+                    {{ 'warehouseForm.saveButton' | translate }}
+                </button>
 
-                <button type="button" *ngIf="isEdit" class="btn btn-primary btn-block" style="margin-top: 20px;"
-                    (click)="update()">{{ 'warehouseForm.updateButton' | translate }}</button>
+                <button type="button" *ngIf="isEdit" class="btn btn-lg btn-gradient-primary btn-block"
+                    style="margin-top: 20px;" (click)="update()">
+                    {{ 'warehouseForm.updateButton' | translate }}
+                </button>
 
                 <!-- Error message for overall form validity -->
                 <div *ngIf="showError && !addWarehouseForm.valid" class="text-danger text-center mt-3">
