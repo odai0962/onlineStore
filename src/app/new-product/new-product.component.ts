@@ -75,7 +75,7 @@ export class NewProductComponent implements OnInit {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+
         if (result.isConfirmed) {
           this.prodectService.updateProduct(product).subscribe({
             next: data => {
@@ -112,7 +112,7 @@ export class NewProductComponent implements OnInit {
 
 
   saveBtn() {
-    this.showError = true; // Set to true when button is clicked
+    this.showError = true;
     if (this.addProductForm.valid) {
       var product = new Products();
       product.name = this.addProductForm.value['productName']
@@ -131,7 +131,7 @@ export class NewProductComponent implements OnInit {
         denyButtonText: `Don't Add`
 
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+
         if (result.isConfirmed) {
           this.prodectService.addProduct(product).subscribe({
             next: data => {

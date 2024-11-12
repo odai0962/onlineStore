@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
   totalWarehouses: number = 0;
   totalUsers: number = 0;
   higherWarehouseCapacity!: Warehouse[]
-  lowerProductStock!: Products[]
   higherProductStock!: Products[]
   higherTotalPriceOrders!: Order[]
   profilImage!: any
   name!: string
+  lowerProductStock!: Products[]
   warehouseId!: number
   constructor(private userService: UsersService, private orderService: OrdersService, private warehouseService: WarehouseService,
     private productsService: ProductsService, private router: Router) {
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-
+    debugger
     this.userService.totalUsers().subscribe({
       next: data => {
 
@@ -62,18 +62,20 @@ export class DashboardComponent implements OnInit {
       next: data => {
 
         this.totalProducts = data
+        debugger
       }
     });
     this.productsService.lowerProductStock(this.warehouseId).subscribe({
       next: data => {
-
         this.lowerProductStock = data
+        debugger
       }
     });
     this.productsService.higherProductStock(this.warehouseId).subscribe({
       next: data => {
 
         this.higherProductStock = data
+        debugger
       }
     });
   }
