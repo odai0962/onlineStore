@@ -66,15 +66,15 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.productsService.lowerProductStock(this.warehouseId).subscribe({
-      next: data => {
-        this.lowerProductStock = data
+      next: data1 => {
+        this.lowerProductStock = data1
         debugger
       }
     });
     this.productsService.higherProductStock(this.warehouseId).subscribe({
-      next: data => {
+      next: data2 => {
 
-        this.higherProductStock = data
+        this.higherProductStock = data2
         debugger
       }
     });

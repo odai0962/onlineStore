@@ -43,7 +43,7 @@ export class StepperComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.loadAllProductByWarehouseId()
+    this.loadAllProductByWarehouseIdUpperThanZero()
     this.addOrderForm = this.formBuilder.group({
       customerName: ['', Validators.required],
       shippingAddress: ['', Validators.required],
@@ -187,11 +187,11 @@ export class StepperComponent implements OnInit {
   //     },
   //   });
   // }
-  loadAllProductByWarehouseId() {
-
+  loadAllProductByWarehouseIdUpperThanZero() {
+    debugger
     this.service.loadAllProductByWarehouseIdUpperThanZero(this.warehouseId).subscribe({
       next: data => {
-
+        debugger
         this.products = data
 
       },
@@ -201,7 +201,7 @@ export class StepperComponent implements OnInit {
 
     if (this.name.nativeElement.value.length == 0) {
       console.log("not found")
-      this.loadAllProductByWarehouseId()
+      this.loadAllProductByWarehouseIdUpperThanZero()
     } else {
       this.service.searchByName(this.name.nativeElement.value, this.warehouseId).subscribe({
         next: data => {
@@ -214,7 +214,7 @@ export class StepperComponent implements OnInit {
 
         },
         error: e => {
-          this.loadAllProductByWarehouseId()
+          this.loadAllProductByWarehouseIdUpperThanZero()
 
         }
       })
