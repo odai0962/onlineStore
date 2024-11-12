@@ -1,8 +1,229 @@
+/* General Body Styles */
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
-    background-color: #f4f4f4;
-    /* Light background for contrast */
-    font-family: 'Arial', sans-serif;
-    /* Modern font */
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    color: rgba(var(--bs-light-rgb), 0.85) !important;
+    margin: 0;
+}
+
+
+/* Buttons */
+.btn-success,
+.btn-outline-primary,
+.btn-primary {
+    transition: all 0.3s ease;
+    border-radius: 25px;
+}
+
+.btn-success:hover,
+.btn-outline-primary:hover,
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-primary {
+    color: rgba(var(--bs-primary-rgb), 1) !important;
+    border-color: rgba(var(--bs-primary-rgb), 0.5) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1) !important;
+    border-color: rgba(var(--bs-primary-rgb), 1) !important;
+}
+
+/* Navbar Filters and Actions */
+.navbar-light .navbar-nav {
+    margin-left: auto;
+    font-weight: 500;
+}
+
+.form-group {
+    width: 250px;
+    margin: 0 15px;
+}
+
+.form-select {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.form-select:focus {
+    border-color: rgba(var(--bs-primary-rgb), 0.8);
+    box-shadow: 0 0 8px rgba(var(--bs-primary-rgb), 0.2);
+}
+
+/* Table Styles */
+table {
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 14px;
+    text-align: center;
+    font-size: 16px;
+}
+
+table th {
+    background-color: rgba(var(--bs-light-rgb), 0.8);
+    color: rgba(var(--bs-dark-rgb), 0.9);
+    font-weight: bold;
+}
+
+table td {
+    color: rgba(var(--bs-dark-rgb), 0.8);
+}
+
+table tr:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--bs-dark-rgb), 1);
+}
+
+.dropdown-menu .dropdown-item {
+    color: rgba(var(--bs-light-rgb), 0.85);
+    padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: rgba(var(--bs-primary-rgb), 1);
+}
+
+/* Table Actions Button */
+.btn-group button {
+    background-color: transparent;
+    border: none;
+    color: rgba(var(--bs-dark-rgb), 0.7);
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.btn-group button:hover {
+    color: rgba(var(--bs-primary-rgb), 1);
+}
+
+/* Page Heading */
+h3 {
+    color: rgba(var(--bs-primary-rgb), 1);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+.form-select {
+    height: 38px;
+    /* Set a consistent height */
+    padding: 8px 12px;
+    /* Adjust padding to match */
+    font-size: 16px;
+    /* Same font size for consistency */
+    line-height: 1.5;
+    /* Adjust line height */
+}
+
+/* Additional customizations for better alignment */
+.form-control {
+    border-radius: 8px;
+    /* Match with select element */
+}
+
+.btn {
+    border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    /* Ensure buttons are rounded to match input/select */
+}
+
+.select2-container .select2-selection {
+    height: 38px;
+    /* Match select height */
+}
+
+.btn-success {
+    --bs-btn-bg: rgba(33, 37, 41, 1)
+}
+
+.navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Vertically center items inside the container */
+    width: 100%;
+}
+
+/* Flexbox for the filters and form container */
+.d-flex {
+    display: flex;
+    align-items: center;
+    /* Vertically align the children (form elements) */
+    gap: 20px;
+    /* Space between the form elements */
+    width: 100%;
+}
+
+/* Ensure each form input and button have the same height */
+.form-group select,
+.form-control,
+.btn {
+    height: 38px;
+    /* Set a fixed height */
+    padding: 8px 12px;
+    /* Adjust padding for consistent spacing */
+    font-size: 16px;
+    /* Make font size consistent */
+    line-height: 1.5;
+    /* Adjust line height for better alignment */
+    border-radius: 8px;
+    /* Match border-radius for consistent look */
+}
+
+/* Ensure search button and create new button have the same height */
+.btn {
+    height: 38px;
+    /* Match height with the form elements */
+    display: flex;
+    align-items: center;
+    /* Center text vertically in the button */
+    justify-content: center;
+    border-radius: 8px;
+    padding: 0 12px;
+}
+
+.btn-outline-primary {
+    transition: transform 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+    transition: transform 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

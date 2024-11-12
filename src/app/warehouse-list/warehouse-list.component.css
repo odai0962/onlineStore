@@ -1,1 +1,137 @@
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+/* General Body Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    color: rgba(var(--bs-light-rgb), 0.85) !important;
+    margin: 0;
+}
+
+
+
+
+/* Buttons */
+.btn-success,
+.btn-outline-primary,
+.btn-primary {
+    transition: all 0.3s ease;
+    border-radius: 25px;
+}
+
+.btn-success:hover,
+.btn-outline-primary:hover,
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-primary {
+    color: rgba(var(--bs-primary-rgb), 1) !important;
+    border-color: rgba(var(--bs-primary-rgb), 0.5) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1) !important;
+    border-color: rgba(var(--bs-primary-rgb), 1) !important;
+}
+
+/* Navbar Filters and Actions */
+.navbar-light .navbar-nav {
+    margin-left: auto;
+    font-weight: 500;
+}
+
+.form-group {
+    width: 250px;
+    margin: 0 15px;
+}
+
+.form-select {
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.form-select:focus {
+    border-color: rgba(var(--bs-primary-rgb), 0.8);
+    box-shadow: 0 0 8px rgba(var(--bs-primary-rgb), 0.2);
+}
+
+/* Table Styles */
+table {
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 14px;
+    text-align: center;
+    font-size: 16px;
+}
+
+table th {
+    background-color: rgba(var(--bs-light-rgb), 0.8);
+    color: rgba(var(--bs-dark-rgb), 0.9);
+    font-weight: bold;
+}
+
+table td {
+    color: rgba(var(--bs-dark-rgb), 0.8);
+}
+
+table tr:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--bs-dark-rgb), 1);
+}
+
+.dropdown-menu .dropdown-item {
+    color: rgba(var(--bs-light-rgb), 0.85);
+    padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: rgba(var(--bs-primary-rgb), 1);
+}
+
+/* Table Actions Button */
+.btn-group button {
+    background-color: transparent;
+    border: none;
+    color: rgba(var(--bs-dark-rgb), 0.7);
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.btn-group button:hover {
+    color: rgba(var(--bs-primary-rgb), 1);
+}
+
+/* Page Heading */
+h3 {
+    color: rgba(var(--bs-primary-rgb), 1);
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+
+
+/* Table Row Hover Effects */
+table tbody tr:hover {
+    background-color: rgba(var(--bs-light-rgb), 0.1);
+    transition: background-color 0.3s ease;
+}

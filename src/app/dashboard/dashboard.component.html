@@ -1,23 +1,20 @@
-<!-- app-dashboard.component.html -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height: 80px;">
-    <!-- Container wrapper -->
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="    height: 80px;">
     <div class="container-fluid">
-        <!-- Toggle button -->
-        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
         </button>
 
-        <!-- Right elements -->
-        <div class="d-flex align-items-center">
-            <!-- Avatar -->
-            <div class="dropdown">
-                <span style="color: white; margin-right: 20px; margin-left: 20px;">{{name}}</span>
-                <a id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
-                    <img src="{{profilImage}}" class="rounded-circle" height="45" alt="Avatar"
-                        (click)="navigateToProfile()" />
-                </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="d-flex align-items-center ms-auto">
+                <span class="navbar-text text-white me-3">{{ name }}</span>
+                <div class="dropdown">
+                    <a href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+                        <img src="{{ profilImage }}" class="rounded-circle" height="45" alt="Avatar"
+                            (click)="navigateToProfile()" />
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -25,122 +22,104 @@
 
 <!-- Dashboard Container -->
 <div class="dashboard-container">
-    <!-- Card for Total Orders -->
+    <!-- Total Orders -->
     <div class="card total-orders">
-        <div class="card-header">
-            <h3>{{ 'dashboard.totalOrders' | translate }}</h3>
-        </div>
         <div class="card-body">
-            <p class="count">{{ totalOrders }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>{{ 'dashboard.totalOrders' | translate }}</h3>
+                <i class="fas fa-boxes fa-4x text-light"></i>
+            </div>
+            <div class="total-count">{{ totalOrders }}</div>
+            <p class="text-muted">{{ 'dashboard.ordersDescription' | translate }}</p>
         </div>
     </div>
 
-    <!-- Card for Total Products (Full Width) -->
+    <!-- Total Products -->
     <div class="card total-products">
-        <div class="card-header">
-            <h3>{{ 'dashboard.totalProducts' | translate }}</h3>
-        </div>
         <div class="card-body">
-            <p class="count">{{ totalProducts }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>{{ 'dashboard.totalProducts' | translate }}</h3>
+                <i class="fas fa-cogs fa-4x text-light"></i>
+            </div>
+            <div class="total-count">{{ totalProducts }}</div>
+            <p class="text-muted">{{ 'dashboard.productsDescription' | translate }}</p>
         </div>
     </div>
 
-    <!-- Card for Total Warehouses -->
+    <!-- Total Warehouses -->
     <div class="card total-warehouses">
-        <div class="card-header">
-            <h3>{{ 'dashboard.totalWarehouses' | translate }}</h3>
-        </div>
         <div class="card-body">
-            <p class="count">{{ totalWarehouses }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>{{ 'dashboard.totalWarehouses' | translate }}</h3>
+                <i class="fas fa-warehouse fa-4x text-light"></i>
+            </div>
+            <div class="total-count">{{ totalWarehouses }}</div>
+            <p class="text-muted">{{ 'dashboard.warehousesDescription' | translate }}</p>
         </div>
     </div>
 
-    <!-- Card for Total Users -->
+    <!-- Total Users -->
     <div class="card total-users">
-        <div class="card-header">
-            <h3>{{ 'dashboard.totalUsers' | translate }}</h3>
-        </div>
         <div class="card-body">
-            <p class="count">{{ totalUsers }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>{{ 'dashboard.totalUsers' | translate }}</h3>
+                <i class="fas fa-users fa-4x text-light"></i>
+            </div>
+            <div class="total-count">{{ totalUsers }}</div>
+            <p class="text-muted">{{ 'dashboard.usersDescription' | translate }}</p>
         </div>
     </div>
 </div>
 
-<!-- Cards for Detailed Orders, Products, and Warehouses -->
-<div class="d-flex p-5 flex-column " style="background-color:#f0f4f8 !important;">
+<!-- Detailed Cards for Products, Orders, and Warehouses -->
+<div class="details-container">
     <!-- Orders with Highest Total Price -->
-    <div class="card details orders mb-5">
+    <div class="card details orders">
         <h3>{{ 'dashboard.ordersWithHighestTotalPrice' | translate }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ 'dashboard.orderId' | translate }}</th>
-                    <th>{{ 'dashboard.totalPrice' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let order of higherTotalPriceOrders">
-                    <td>{{ order.orderId }}</td>
-                    <td>{{ order.totalPrice }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div *ngFor="let order of higherTotalPriceOrders" class="order-card">
+            <div class="order-info">
+                <h5>{{ order.orderId }}</h5>
+                <div class="order-price">{{ order.totalPrice | currency:'JD' }}</div>
+            </div>
+        </div>
     </div>
 
     <!-- Products with Lowest Stock -->
-    <div class="card details products mb-5">
+    <div class="card details products">
         <h3>{{ 'dashboard.productsWithLowestStock' | translate }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ 'dashboard.productName' | translate }}</th>
-                    <th>{{ 'dashboard.stock' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of lowerProductStock">
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.stock }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div *ngFor="let product of lowerProductStock" class="product-card">
+            <div class="product-info">
+                <h5>{{ product.name }}</h5>
+                <div class="stock-level">
+                    <span>{{ product.stock }} units</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Products with Highest Stock -->
-    <div class="card details products mb-5">
+    <div class="card details products">
         <h3>{{ 'dashboard.productsWithHighestStock' | translate }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ 'dashboard.productName' | translate }}</th>
-                    <th>{{ 'dashboard.stock' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of higherProductStock">
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.stock }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div *ngFor="let product of higherProductStock" class="product-card">
+            <div class="product-info">
+                <h5>{{ product.name }}</h5>
+                <div class="stock-level">
+                    <span>{{ product.stock }} units</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Warehouses with Highest Capacity -->
-    <div class="card details warehouses mb-5">
+    <div class="card details warehouses">
         <h3>{{ 'dashboard.warehousesWithHighestCapacity' | translate }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>{{ 'dashboard.warehouseName' | translate }}</th>
-                    <th>{{ 'dashboard.capacity' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let warehouse of higherWarehouseCapacity">
-                    <td>{{ warehouse.location }}</td>
-                    <td>{{ warehouse.capacity }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div *ngFor="let warehouse of higherWarehouseCapacity" class="warehouse-card">
+            <div class="warehouse-info">
+                <h5>{{ warehouse.location }}</h5>
+                <div class="warehouse-capacity">
+                    <span>{{ warehouse.capacity }} m²</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

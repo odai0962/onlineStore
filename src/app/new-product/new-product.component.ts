@@ -20,15 +20,24 @@ export class NewProductComponent implements OnInit {
   image?: any = ''
   isEdit: boolean = false
   imageError: boolean = false;
+  warehouseId!: number
   constructor(private formBuilder: FormBuilder, private router: Router,
     private prodectService: ProductsService, private warehouseService: WarehouseService,
     private activatedRoute: ActivatedRoute) {
+    var info = localStorage.getItem('userInfo');
+    if (info) {
 
+      var parsedInfo = JSON.parse(info);
+      var warehouseId = parsedInfo.warehouseId
+      this.warehouseId = warehouseId
+    } else {
+      console.log('No user info found in localStorage');
+    }
 
   }
 
   ngOnInit(): void {
-    this.reloadWarehouse()
+
     this.addProductForm = this.formBuilder.group({
       Id: [''],
       productName: ['', Validators.compose([Validators.minLength(3), Validators.required])],
@@ -37,7 +46,7 @@ export class NewProductComponent implements OnInit {
       stock: ['', Validators.required],
       price: ['', Validators.required],
       image: [''],
-      warehouse: ['', Validators.required]
+      warehouse: ['']
     });
 
     if (this.activatedRoute.snapshot.queryParams['Id'] != undefined) {
@@ -57,7 +66,7 @@ export class NewProductComponent implements OnInit {
       product.price = parseFloat(this.addProductForm.value['price'])
       product.sku = this.addProductForm.value['SKU']
       product.stock = parseInt(this.addProductForm.value['stock'])
-      product.warehouseId = parseInt(this.addProductForm.value['warehouse'])
+      product.warehouseId = this.warehouseId
       product.image = this.image
       Swal.fire({
         title: "Do you want to save the changes?",
@@ -94,7 +103,7 @@ export class NewProductComponent implements OnInit {
         this.addProductForm.controls['SKU'].setValue(data.sku)
         this.addProductForm.controls['stock'].setValue(data.stock)
         this.addProductForm.controls['price'].setValue(data.price)
-        this.addProductForm.controls['warehouse'].setValue(data.warehouseId)
+
         this.image = data.image
       },
 
@@ -112,7 +121,7 @@ export class NewProductComponent implements OnInit {
       product.price = parseFloat(this.addProductForm.value['price'])
       product.sku = this.addProductForm.value['SKU']
       product.stock = parseInt(this.addProductForm.value['stock'])
-      product.warehouseId = parseInt(this.addProductForm.value['warehouse'])
+      product.warehouseId = this.warehouseId
       product.image = this.image
       Swal.fire({
         title: "Do you want to add this product?",
@@ -143,19 +152,19 @@ export class NewProductComponent implements OnInit {
   }
 
   onFileChange(file: any) {
-    debugger
+
     let reader = new FileReader();
     reader.readAsDataURL(file.target.files[0]);
     reader.onload = (_file) => {
       this.image = reader.result
     }
   }
-  reloadWarehouse() {
-    this.warehouseService.loadAllWarehouses().subscribe({
-      next: data => {
-        this.warehouses = data
-      },
+  // reloadWarehouse() {
+  //   this.warehouseService.loadAllWarehouses().subscribe({
+  //     next: data => {
+  //       this.warehouses = data
+  //     },
 
-    })
-  }
+  //   })
+  // }
 }

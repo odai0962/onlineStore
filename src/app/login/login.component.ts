@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   loginFrom!: FormGroup
   showError: boolean = false;
   @ViewChild('language') language!: ElementRef
-  constructor(private formbuilder: FormBuilder, private router: Router, private userService: UsersService, private translate: TranslateService) { }
+  constructor(private formbuilder: FormBuilder, private router: Router,
+    private userService: UsersService, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.loginFrom = this.formbuilder.group({
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     })
   }
   loginBtn() {
+
     this.showError = false; // Reset error state
     if (this.loginFrom.valid) {
       var login = new Login();
@@ -35,12 +37,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('securityKey', data.tokenValue)
           this.userService.getRoleByUserName(login.username).subscribe({
             next: role => {
+
               localStorage.setItem('userRole', role)
             },
 
           })
           this.userService.getUserInfo(login.username).subscribe({
             next: info => {
+
               localStorage.setItem('userInfo', JSON.stringify(info))
               this.router.navigate(["home/Dashboard"]);
             },

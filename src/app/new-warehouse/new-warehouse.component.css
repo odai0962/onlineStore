@@ -1,27 +1,80 @@
-.invalid-feedback {
-    display: block;
-}
-
+/* General Container Styling */
 .container {
-    background-color: #f0f4f8;
-    /* Light background */
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #f4f7fc;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border: none;
+/* Form Box Styling */
+.col-lg-8,
+.col-md-10 {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.text-danger {
-    font-size: 0.9em;
-}
-
+/* Heading Styling */
 h2 {
     color: #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+/* Form Controls */
+.form-label {
+    font-weight: 500;
+    color: #4d4d4d;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #f7f9fc;
+    border: 1px solid #dbe1e7;
+}
+
+.form-control:focus {
+    border-color: #5c6bc0;
+    box-shadow: 0 0 5px rgba(92, 107, 192, 0.5);
+}
+
+.select.form-control {
+    background-color: #ffffff;
+}
+
+/* Invalid Feedback */
+.invalid-feedback {
+    display: block;
+    font-size: 0.9rem;
+    color: #e74c3c;
+}
+
+/* Buttons */
+.btn-gradient-primary {
+    background-image: linear-gradient(to right, #007bff, #00c6ff);
+    border: none;
+    color: white;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+    background-image: linear-gradient(to right, #0056b3, #0099cc);
+}
+
+/* Error Message */
+.text-danger {
+    font-size: 0.9rem;
+    color: #e74c3c;
+}
+
+/* Spacing */
+.mt-3 {
+    margin-top: 15px;
 }

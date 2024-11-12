@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
   }
 
   changePasswordBtn() {
-    debugger
+
     if (this.changePasswordForm.valid) {
       var userPassword = new PasswordDTO()
       userPassword.currentPassword = this.changePasswordForm.controls['currentPassword'].value
@@ -67,7 +67,7 @@ export class ProfileComponent implements OnInit {
           if (result.isConfirmed) {
             this.userService.changePassword(userPassword).subscribe({
               next: data => {
-                debugger
+
                 Swal.fire("Saved!", "", "success");
               }
             })

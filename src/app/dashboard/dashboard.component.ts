@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   higherTotalPriceOrders!: Order[]
   profilImage!: any
   name!: string
+  warehouseId!: number
   constructor(private userService: UsersService, private orderService: OrdersService, private warehouseService: WarehouseService,
     private productsService: ProductsService, private router: Router) {
     var info = localStorage.getItem('userInfo');
@@ -34,6 +35,8 @@ export class DashboardComponent implements OnInit {
       this.profilImage = profilImage
       var name = parsedInfo.name
       this.name = name
+      var warehouseId = parsedInfo.warehouseId;
+      this.warehouseId = warehouseId
     } else {
       console.log('No user info found in localStorage');
     }
@@ -55,9 +58,24 @@ export class DashboardComponent implements OnInit {
     this.orderService.higherTotalPriceOrder().subscribe({ next: data => { this.higherTotalPriceOrders = data } });
     this.warehouseService.totalWarehouses().subscribe({ next: data => { this.totalWarehouses = data } });
     this.warehouseService.higherWarehouseCapacity().subscribe({ next: data => { this.higherWarehouseCapacity = data } });
-    this.productsService.totalProducts().subscribe({ next: data => { this.totalProducts = data } });
-    this.productsService.lowerProductStock().subscribe({ next: data => { this.lowerProductStock = data } });
-    this.productsService.higherProductStock().subscribe({ next: data => { this.higherProductStock = data } });
+    this.productsService.totalProducts(this.warehouseId).subscribe({
+      next: data => {
+
+        this.totalProducts = data
+      }
+    });
+    this.productsService.lowerProductStock(this.warehouseId).subscribe({
+      next: data => {
+
+        this.lowerProductStock = data
+      }
+    });
+    this.productsService.higherProductStock(this.warehouseId).subscribe({
+      next: data => {
+
+        this.higherProductStock = data
+      }
+    });
   }
   navigateToProfile() {
 
