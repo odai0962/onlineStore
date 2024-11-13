@@ -61,7 +61,6 @@ export class NewUserComponent implements OnInit {
 
   }
   update() {
-    debugger
     this.showError = true;
     this.addUserForm.get('password')?.disable();
     if (this.addUserForm.valid) {

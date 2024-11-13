@@ -122,7 +122,6 @@ export class NewProductComponent implements OnInit {
       product.sku = this.addProductForm.value['SKU']
       product.stock = parseInt(this.addProductForm.value['stock'])
       product.warehouseId = this.warehouseId
-      product.image = this.image
       Swal.fire({
         title: "Do you want to add this product?",
         showDenyButton: true,
