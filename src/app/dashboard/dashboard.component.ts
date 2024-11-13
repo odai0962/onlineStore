@@ -24,10 +24,8 @@ export class DashboardComponent implements OnInit {
   higherTotalPriceOrders!: Order[]
   profilImage!: any
   name!: string
-<<<<<<< HEAD
   lowerProductStock!: Products[]
-=======
->>>>>>> 4d55ddf29aad1d48619c272e4b4775f0fb892ab8
+
   warehouseId!: number
   constructor(private userService: UsersService, private orderService: OrdersService, private warehouseService: WarehouseService,
     private productsService: ProductsService, private router: Router) {
@@ -65,22 +63,21 @@ export class DashboardComponent implements OnInit {
       next: data => {
 
         this.totalProducts = data
-<<<<<<< HEAD
-        debugger
+
       }
     });
     this.productsService.lowerProductStock(this.warehouseId).subscribe({
       next: data1 => {
         this.lowerProductStock = data1
-        debugger
+
       }
     });
     this.productsService.higherProductStock(this.warehouseId).subscribe({
       next: data2 => {
 
         this.higherProductStock = data2
-        debugger
-=======
+
+
       }
     });
     this.productsService.lowerProductStock(this.warehouseId).subscribe({
@@ -93,7 +90,7 @@ export class DashboardComponent implements OnInit {
       next: data => {
 
         this.higherProductStock = data
->>>>>>> 4d55ddf29aad1d48619c272e4b4775f0fb892ab8
+
       }
     });
   }

@@ -61,7 +61,7 @@ export class NewUserComponent implements OnInit {
 
   }
   update() {
-
+    debugger
     this.showError = true;
     this.addUserForm.get('password')?.disable();
     if (this.addUserForm.valid) {
@@ -86,6 +86,7 @@ export class NewUserComponent implements OnInit {
           if (result.isConfirmed) {
             this.userService.updateUser(updateUser).subscribe({
               next: data => {
+                debugger
                 Swal.fire("Saved!", "", "success");
                 this.router.navigate(["/home/userList"]);
               },

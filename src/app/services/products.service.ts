@@ -21,10 +21,6 @@ export class ProductsService {
   }
 
   loadAllProductByWarehouseIdUpperThanZero(warehouseId: number): Observable<any> {
-<<<<<<< HEAD
-    debugger
-=======
->>>>>>> 4d55ddf29aad1d48619c272e4b4775f0fb892ab8
     return this.client.get(this.baseURl + '/api/Product/loadAllProductByWarehouseIdUpperThanZero?warehouseId=' + warehouseId);
   }
 

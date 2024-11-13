@@ -95,6 +95,21 @@
     box-shadow: 0 0 5px rgba(33, 37, 41, 1);
 }
 
+.dropdown-menu {
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--bs-dark-rgb), 1);
+}
+
+.dropdown-menu .dropdown-item {
+    color: rgba(var(--bs-light-rgb), 0.85);
+    padding: 10px 20px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: rgba(var(--bs-primary-rgb), 1);
+}
 
 .form-range::-moz-range-thumb {
     width: 20px;

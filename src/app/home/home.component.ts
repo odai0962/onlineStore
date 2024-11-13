@@ -14,14 +14,16 @@ export class HomeComponent {
   roles!: string;
   @ViewChild('language') language!: ElementRef
   constructor(private router: Router, private translate: TranslateService) {
-    this.liMenu = Menu;
+
     this.roles = JSON.parse(JSON.stringify(localStorage.getItem('userRole')));
+    this.liMenu = Menu;
     this.liMenu.forEach((element: any) => {
       const isInRole = element.role.find((x: any) => x === this.roles);
       if (isInRole !== undefined) {
         this.filteredMenu.push(element);
       }
     });
+
   }
 
   logout() {
