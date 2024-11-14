@@ -10,7 +10,6 @@ import { NewWarehouseComponent } from './new-warehouse/new-warehouse.component';
 import { WarehouseListComponent } from './warehouse-list/warehouse-list.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { NewProductComponent } from './new-product/new-product.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { StepperComponent } from './stepper/stepper.component';
 import { Error404Component } from './error404/error404.component';
 import { Error401Component } from './error401/error401.component';
